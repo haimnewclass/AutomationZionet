@@ -13,7 +13,8 @@ namespace AutomationZionet.Projects.Practice.Scripts.Gmail
         public GmailURLs()
         {
             base.Params["baseUrl"] = "https://mail.google.com/";
-            
+            base.Params["google"] = "https://www.google.com/";
+
         }
     }
 }

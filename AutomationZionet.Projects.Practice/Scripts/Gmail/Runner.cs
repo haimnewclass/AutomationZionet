@@ -14,8 +14,8 @@ namespace AutomationZionet.Projects.Practice.Scripts.Gmail
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                ScriptGmailLogout scriptGmailLogout = new Projects.Practice.Scripts.Gmail.ScriptGmailLogout(driver);
-                scriptGmailLogout.Run();
+                ScriptGmailLogin login = new Projects.Practice.Scripts.Gmail.ScriptGmailLogin(driver);
+                login.Run();
             }
         }
     }

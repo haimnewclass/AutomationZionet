@@ -9,16 +9,26 @@ namespace AutomationZionet.Base.WebElements
 {
     public class ElementButton : ElementBase, IElement
     {
-        public virtual bool Exists
+        public ElementButton(Setting s,string name) : base(s, name)
         {
-            get { return false; }
+
         }
 
-        public virtual bool Hidden
+       
+
+        public static ElementButton Get(Setting s, string name)
         {
-            get { return false; }
+            return new ElementButton(s, name);
         }
 
+        public bool Click()
+        {
+                if (!ExistsW)
+                    return false;
+
+                WebElementW.Click();
+            return true;
+        }
 
     }
 }

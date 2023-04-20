@@ -42,5 +42,10 @@ namespace AutomationZionet.Base.Scripts
             WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, timeoutSec));
             wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
         }
+
+        public void Wait(int mili = 5000)
+        {
+            System.Threading.Thread.Sleep(mili);
+        }
     }
 }
