@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Automation.XNes.Lambda\Automation.XNes.Lambda.csproj">
+      <Project>{bf390e32-3a8a-47ed-b0b5-2ac4b2de9050}</Project>
+      <Name>Automation.XNes.Lambda</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutomationZionet.Base\AutomationZionet.Base.csproj">
       <Project>{58174124-bd3f-45c1-8d94-698a1e7ae712}</Project>
       <Name>AutomationZionet.Base</Name>

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using AutomationZionet.Base;
 using AutomationZionet.Projects;
 using AutomationZionet.Projects.Practice.Scripts.Gmail;
-
+using Automation.XNes.Lambda;
 namespace AutomationZionet.UI
 {
     public partial class Form1 : Form
@@ -23,6 +23,11 @@ namespace AutomationZionet.UI
         private void button1_Click(object sender, EventArgs e)
         {
             Runner.Run1();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LambdaRunner.startRun();
         }
     }
 }

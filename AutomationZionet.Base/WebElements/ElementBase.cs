@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using AutomationZionet.Base.Scripts;
 
+
 namespace AutomationZionet.Base.WebElements
 {
     public interface IElement
@@ -50,9 +51,20 @@ namespace AutomationZionet.Base.WebElements
                 return ret;
             }
         }
+        //public ISelectElement SelectElement
+        //{
+        //    get
+        //    {
+        //        IWebElement ret = null;
+
+        //        ret = Setting.Finder.Find(Name);
 
 
-       
+        //        return ret;
+        //    }
+        //}
+
+
         public virtual bool ExistsW
         {
             get {

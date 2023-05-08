@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationZionet.Projects.G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationZionet.UI", "AutomationZionet.UI\AutomationZionet.UI.csproj", "{F8357419-E2E7-4F21-96A3-4D02D30A4315}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.XNes.Lambda", "Automation.XNes.Lambda\Automation.XNes.Lambda.csproj", "{BF390E32-3A8A-47ED-B0B5-2AC4B2DE9050}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F8357419-E2E7-4F21-96A3-4D02D30A4315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8357419-E2E7-4F21-96A3-4D02D30A4315}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8357419-E2E7-4F21-96A3-4D02D30A4315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF390E32-3A8A-47ED-B0B5-2AC4B2DE9050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF390E32-3A8A-47ED-B0B5-2AC4B2DE9050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF390E32-3A8A-47ED-B0B5-2AC4B2DE9050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF390E32-3A8A-47ED-B0B5-2AC4B2DE9050}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
