@@ -51,18 +51,6 @@ namespace AutomationZionet.Base.WebElements
                 return ret;
             }
         }
-        //public ISelectElement SelectElement
-        //{
-        //    get
-        //    {
-        //        IWebElement ret = null;
-
-        //        ret = Setting.Finder.Find(Name);
-
-
-        //        return ret;
-        //    }
-        //}
 
 
         public virtual bool ExistsW

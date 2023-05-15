@@ -30,7 +30,6 @@ namespace AutomationZionet.Base.Scripts
             
             WaitForLoad();
         }
-
         public abstract ScriptState Run();
         public virtual void ImplicitWait()
         {

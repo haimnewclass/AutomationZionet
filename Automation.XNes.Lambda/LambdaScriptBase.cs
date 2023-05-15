@@ -10,7 +10,7 @@ namespace Automation.XNes.Lambda
 {
     public abstract class LambdaScriptBase:ScriptBase
     {
-        protected LambdaSetting setting;
+        public LambdaSetting setting;
         protected LambdaScriptBase(IWebDriver d, LambdaSetting s) : base(d)
         {
             base.Config = new LambdaConfig();

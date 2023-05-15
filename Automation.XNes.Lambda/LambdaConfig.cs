@@ -15,8 +15,10 @@ namespace Automation.XNes.Lambda
         {
             base.Params["Year_from"] = "1999";
             base.Params["Year_to"] = "2023";
-           
-           
+            base.Params["Driver_Path"] = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\files";
+            base.Params["New_Driver_Path"] = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\newFile";
+
+
         }
 
     }
@@ -26,6 +28,12 @@ namespace Automation.XNes.Lambda
         public LambdaSetting(IWebDriver d, Finder f) : base(d, f)
         {
             lambdaConfig = new LambdaConfig();
+        }
+        public LambdaSetting(IWebDriver d, Finder f,string destFolder) : base(d, f)
+        {
+
+            lambdaConfig = new LambdaConfig();
+            lambdaConfig["DestFolder"] = destFolder;
         }
     }
 }
