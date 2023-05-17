@@ -14,11 +14,13 @@ using Automation.XNes.Lambda;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using AutomationZionet.Base.Driver;
+using System.IO;
 
 namespace AutomationZionet.UI
 {
     public partial class Form1 : Form
-    {
+    { 
+        public LambdaDownloadOneMonth l1;
         public Form1()
         {
             InitializeComponent();
@@ -44,7 +46,7 @@ namespace AutomationZionet.UI
             string  month="", year="";
             month=textBox1.Text;
             year=textBox2.Text;
-            LambdaRunner.SelectMonthRun(month,year);
+            LambdaRunner.SelectMonthRun(l1,month,year, afterFileCreated);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -59,22 +61,35 @@ namespace AutomationZionet.UI
         {
 
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\files";
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddUserProfilePreference("download.default_directory", path);
-            //chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
-            //chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
+           string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\";
 
-            //using (IWebDriver driver = new ChromeDriver("Driver_Path", chromeOptions))
-            using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
-            {
-            LambdaDownloadOneMonth l1 = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver),path), "01","2004");
+          SingleRunner s1 = new SingleRunner(); 
+            s1.Run(path, "01", "2001");
+ 
+            //Guid guid = Guid.NewGuid();
+            //string newFolderPath = path + guid.ToString();
 
-                
-            }
+            //if (!System.IO.Directory.Exists(newFolderPath))
+            //    System.IO.Directory.CreateDirectory(newFolderPath);
+
+            //ChromeOptions chromeOptions = new ChromeOptions();
+            //chromeOptions.AddUserProfilePreference("download.default_directory", newFolderPath);
+            //using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
+            //{
+            // l1 = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), "01","2004", afterFileCreated);
+
+            //    l1.Run();
+
+            //}
         }
+        public void afterFileCreated(object sender, FileSystemEventArgs e)
+        {
+            l1.CopyCompleatedFileToTargetFolder();
+        }
+
+
+
     }
 }

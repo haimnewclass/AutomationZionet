@@ -60,6 +60,7 @@
     <Compile Include="LambdaStartSelect.cs" />
     <Compile Include="LambdaUrls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutomationZionet.Base\AutomationZionet.Base.csproj">

@@ -59,6 +59,7 @@
     <Compile Include="Driver\ChromeDriverBase.cs" />
     <Compile Include="Driver\DriverBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runner\RunnerBase.cs" />
     <Compile Include="Scripts\Finder.cs" />
     <Compile Include="Scripts\ScriptBase.cs" />
     <Compile Include="Setting.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,12 @@ namespace Automation.XNes.Lambda
 {
     public class LambdaRunner
     {
+        //the local path of the project
+        const string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\";
 
-
+        //get all the gemel files
         public static void startRun()
         {  
-            string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\files";
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddUserProfilePreference("download.default_directory",path);
             //chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -30,30 +32,44 @@ namespace Automation.XNes.Lambda
             }
 
         }
-        public static void SelectMonthRun(string month, string year)
-        {
-            string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\files";
 
+        //get gemel file by month and year
+        public static void SelectMonthRun(LambdaDownloadOneMonth s1,string month, string year, FileSystemEventHandler afterFileCreated)
+        {
+            Guid guid = Guid.NewGuid();
+            string newFolderPath = path + guid.ToString();
+
+            //create new folder with the new guid name
+            if (!System.IO.Directory.Exists(newFolderPath))
+                System.IO.Directory.CreateDirectory(newFolderPath);
+
+            //the defulte folder of download
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddUserProfilePreference("download.default_directory", path);
+            chromeOptions.AddUserProfilePreference("download.default_directory", newFolderPath);
 
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                LambdaDownloadOneMonth startSelect = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver),path),month,year);
-
+                //in the new LambdaSetting saving the new path with the new folder
+                LambdaDownloadOneMonth startSelect = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),month,year, afterFileCreated);
+                s1 = startSelect;
                 startSelect.Run();
             }
         }
+        //get gemel files between the currect years
         public static void SelectYearsRun(string startYear, string endYear)
         {
-            string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\files";
+            Guid guid = Guid.NewGuid();
+           string newFolderPath = path + guid.ToString();
+
+            if (!System.IO.Directory.Exists(newFolderPath))
+                System.IO.Directory.CreateDirectory(newFolderPath);
 
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddUserProfilePreference("download.default_directory", path);
+            chromeOptions.AddUserProfilePreference("download.default_directory", newFolderPath);
 
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                LambdaDownloadBetYears startSelect = new LambdaDownloadBetYears(driver, new LambdaSetting(driver, new LambdaFinder(driver),path), startYear, endYear);
+                LambdaDownloadBetYears startSelect = new LambdaDownloadBetYears(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), startYear, endYear);
 
                 startSelect.Run();
             }

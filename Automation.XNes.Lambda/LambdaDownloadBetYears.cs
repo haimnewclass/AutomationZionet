@@ -39,7 +39,7 @@ namespace Automation.XNes.Lambda
                     else
                          strMonth = j.ToString();
 
-                    LambdaDownloadOneMonth startSelect = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver)),strMonth, i.ToString());
+                    LambdaDownloadOneMonth startSelect = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver)),strMonth, i.ToString(),null);
 
                     startSelect.Run();
                 }
