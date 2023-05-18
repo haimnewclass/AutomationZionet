@@ -61,17 +61,10 @@ namespace Automation.XNes.Lambda
             ElementButton.Get(setting, "Btn-Add").Click();
             ElementButton.Get(setting, "Btn-Download-Xml").Click();
 
-            SelectElement select1 = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 0, 2)).Until(driver => driver.FindElement(By.XPath("//*[@id='selXMLHodashimMe']"))));
-            select1.SelectByValue(month);
-
-            SelectElement select2 = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 0, 2)).Until(driver => driver.FindElement(By.XPath("//*[@id='selXMLShanimMe']"))));
-            select2.SelectByValue(year.ToString());
-
-            SelectElement select3 = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 0, 2)).Until(driver => driver.FindElement(By.XPath("//*[@id='selXMLHodashimAd']"))));
-            select3.SelectByValue(month);
-
-            SelectElement select4 = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 0, 2)).Until(driver => driver.FindElement(By.XPath("//*[@id='selXMLShanimAd']"))));
-            select4.SelectByValue(year.ToString());
+            ElementSelect.Get(setting, "Select-one").SelectByValue(month);
+            ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+            ElementSelect.Get(setting, "Select-three").SelectByValue(month);
+            ElementSelect.Get(setting, "Select-four").SelectByValue(year);
 
             ElementButton.Get(setting, "Radio-PerutMale").Click();
             ElementButton.Get(setting, "Btn-Confirm").Click();
@@ -85,11 +78,18 @@ namespace Automation.XNes.Lambda
             watcher.Changed -= fileSystemEventHandler;
             DirectoryInfo d = new DirectoryInfo(base.setting.lambdaConfig.Params["DestFolder"]);
             FileInfo[] infos = d.GetFiles();
+
+            if (infos.Length>0)
+            {
             infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" +"GEMEL "+ year.ToString() + "_" + month.ToString() + ".xml");
-            //infos[0].Delete();
+                infos = null;
+            }
+
+
+            //infos[0].Delete();  
             //delete folder
-              d.Delete();
-            infos = null;
+            //d.Delete();
+            
         }
 
     }

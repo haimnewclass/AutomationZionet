@@ -38,6 +38,37 @@ namespace AutomationZionet.Base.Scripts
             return element;
         }
 
+
+        public SelectElement FindSelectElement(string elementName)
+        {
+            SelectElement element = null;
+            try
+            {
+            if (!Elements.Params.ContainsKey(elementName))
+                element = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 0, 1)).Until(driver => driver.FindElement(By.XPath(Elements[elementName]))));
+            }
+            catch (OpenQA.Selenium.NoSuchElementException ex)
+            {
+                element = null;
+            }
+            catch (Exception ex)
+            {
+                element = null;
+            }
+
+            return element;
+        }
+        public SelectElement FindS(string elementName)
+        {
+
+            if (!Elements.Params.ContainsKey(elementName))
+                return null;
+
+            SelectElement element = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 1, 0)).Until(driver => driver.FindElement(By.XPath(Elements[elementName]))));
+
+            return element;
+
+        }
         public IWebElement FindW(string elementName)
         {
 

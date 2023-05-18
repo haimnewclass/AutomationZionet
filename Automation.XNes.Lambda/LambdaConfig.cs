@@ -16,7 +16,8 @@ namespace Automation.XNes.Lambda
             base.Params["Year_from"] = "1999";
             base.Params["Year_to"] = "2023";
             base.Params["New_Driver_Path"] = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\gemelFiles";
-
+            base.Params["Driver_Path"] = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\DownloadFiles";
+           
         }
 
     }

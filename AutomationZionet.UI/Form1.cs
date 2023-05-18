@@ -33,7 +33,7 @@ namespace AutomationZionet.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LambdaRunner.startRun();
+            LambdaRunner.startRun();  
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,18 +43,20 @@ namespace AutomationZionet.UI
 
         private void button3_Click(object sender, EventArgs e)
         {
+            LambdaRunner l = new LambdaRunner();
             string  month="", year="";
             month=textBox1.Text;
             year=textBox2.Text;
-            LambdaRunner.SelectMonthRun(l1,month,year, afterFileCreated);
+            l.SelectMonthRun(month,year);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            LambdaRunner l = new LambdaRunner();
             string startYear = "", endYear = "";
             startYear = textBox3.Text;
             endYear = textBox4.Text;
-            LambdaRunner.SelectYearsRun(startYear, endYear);
+            l.SelectYearsRun(startYear, endYear);
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -67,22 +69,6 @@ namespace AutomationZionet.UI
 
           SingleRunner s1 = new SingleRunner(); 
             s1.Run(path, "01", "2001");
- 
-            //Guid guid = Guid.NewGuid();
-            //string newFolderPath = path + guid.ToString();
-
-            //if (!System.IO.Directory.Exists(newFolderPath))
-            //    System.IO.Directory.CreateDirectory(newFolderPath);
-
-            //ChromeOptions chromeOptions = new ChromeOptions();
-            //chromeOptions.AddUserProfilePreference("download.default_directory", newFolderPath);
-            //using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
-            //{
-            // l1 = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), "01","2004", afterFileCreated);
-
-            //    l1.Run();
-
-            //}
         }
         public void afterFileCreated(object sender, FileSystemEventArgs e)
         {

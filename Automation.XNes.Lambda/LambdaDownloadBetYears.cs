@@ -19,12 +19,15 @@ namespace Automation.XNes.Lambda
         public int startYear { get; set; }
         public int endYear { get; set; }
 
-        public LambdaDownloadBetYears(IWebDriver d, LambdaSetting s, string startYear, string endYear) : base(d, s)
+        public FileSystemEventHandler fileSystemEventHandler;
+        public LambdaDownloadOneMonth oneMonth { get; set; }
+        public LambdaDownloadBetYears(IWebDriver d, LambdaSetting s, string startYear, string endYear, FileSystemEventHandler fileSystemEventHandler) : base(d, s)
         {
             setting = s;
             driver = d;
             this.startYear = int.Parse(startYear);
             this.endYear = int.Parse(endYear);
+            this.fileSystemEventHandler= fileSystemEventHandler;    
         }
 
         public override ScriptState Run()
@@ -39,9 +42,9 @@ namespace Automation.XNes.Lambda
                     else
                          strMonth = j.ToString();
 
-                    LambdaDownloadOneMonth startSelect = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver)),strMonth, i.ToString(),null);
+                    oneMonth = new LambdaDownloadOneMonth(driver, setting,strMonth, i.ToString(), fileSystemEventHandler);
 
-                    startSelect.Run();
+                    oneMonth.Run();
                 }
 
             }

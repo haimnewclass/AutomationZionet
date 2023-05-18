@@ -25,7 +25,7 @@ namespace AutomationZionet.Base.WebElements
         }
         public readonly string Name ;
         public Setting Setting;
-        public IWebElement WebElement
+        public virtual IWebElement WebElement
         {
             get
             {
@@ -37,8 +37,22 @@ namespace AutomationZionet.Base.WebElements
                 return ret;
             }
         }
+        public virtual SelectElement SelectElement_
 
-        public IWebElement WebElementW
+        {
+            get
+            {
+                SelectElement ret = null;
+
+                ret = Setting.Finder.FindSelectElement(Name);
+
+
+                return ret;
+            }
+        }
+
+
+        public virtual IWebElement WebElementW
         {
             get
             {
@@ -51,6 +65,19 @@ namespace AutomationZionet.Base.WebElements
                 return ret;
             }
         }
+        public virtual SelectElement SelectElementS
+        {
+            get
+            {
+                SelectElement ret = null;
+
+                ret = Setting.Finder.FindS(Name);
+
+
+
+                return ret;
+            }
+        }
 
 
         public virtual bool ExistsW
@@ -58,6 +85,14 @@ namespace AutomationZionet.Base.WebElements
             get {
 
                 return WebElementW == null ? false : true;
+            }
+        }
+        public virtual bool ExistsS
+        {
+            get
+            {
+
+                return SelectElementS == null ? false : true;
             }
         }
 

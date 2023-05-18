@@ -28,6 +28,14 @@ namespace Automation.XNes.Lambda
             base.Elements["Radio-PerutMale"] = @"//*[@id='rbXMLPerutMale']";
             base.Elements["Btn-Confirm"] = @"//*[@id='cbBatzeaXML']";
 
+            //select 
+            base.Elements["Select-one"] = @"//*[@id='selXMLHodashimMe']";
+            base.Elements["Select-two"] = @"//*[@id='selXMLShanimMe']";
+            base.Elements["Select-three"] = @"//*[@id='selXMLHodashimAd']";
+            base.Elements["Select-four"] = @"//*[@id='selXMLShanimAd']";
+
+
+
         }
     }
 }
