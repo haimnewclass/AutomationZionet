@@ -1,19 +1,17 @@
-﻿using System;
+﻿using AutomationZionet.Base.Scripts;
+using AutomationZionet.Base.WebElements;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using AutomationZionet.Base.Scripts;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System.IO;
-using AutomationZionet.Base.WebElements;
-using OpenQA.Selenium.Chrome;
+using System.Threading.Tasks;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Scripts
 {
-    public class LambdaDownloadOneMonth : LambdaScriptBase
+    public class lambdaBituchOneMonth : LambdaScriptBase
     {
         public LambdaSetting setting { get; set; }
         public IWebDriver driver { get; set; }
@@ -24,7 +22,7 @@ namespace Automation.XNes.Lambda
 
         FileSystemEventHandler fileSystemEventHandler;
 
-        public LambdaDownloadOneMonth(IWebDriver d, LambdaSetting s,string month,string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
+        public lambdaBituchOneMonth(IWebDriver d, LambdaSetting s, string month, string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
         {
             fileSystemEventHandler = afileSystemEventHandler;
             setting = s;
@@ -55,20 +53,23 @@ namespace Automation.XNes.Lambda
             watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
 
-            GoToUrl("baseUrl");
-            ElementButton.Get(setting, "Btn-knisa").Click();
-            ElementButton.Get(setting, "Select-All-Kupot").Click();
-            ElementButton.Get(setting, "Btn-Add").Click();
-            ElementButton.Get(setting, "Btn-Download-Xml").Click();
+            GoToUrl("baseBituchUrl");
+            ElementButton.Get(setting, "bituach-Btn-knisa").Click();
+            ElementButton.Get(setting, "bituach-Select-All-Kupot").Click();
+            Thread.Sleep(1000);
+            ElementButton.Get(setting, "bituach-Btn-Add").Click();
+            ElementButton.Get(setting, "bituach-Btn-Download-Xml").Click();
+            GoToUrl("newPage");
+            string s= driver.Url.ToString();
+            Console.WriteLine(s);
+            Thread.Sleep(1000);
+            ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
+            ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+            ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
+            ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
 
-            ElementSelect.Get(setting, "Select-one").SelectByValue(month);
-            ElementSelect.Get(setting, "Select-two").SelectByValue(year);
-            ElementSelect.Get(setting, "Select-three").SelectByValue(month);
-            ElementSelect.Get(setting, "Select-four").SelectByValue(year);
-
-            ElementButton.Get(setting, "Radio-PerutMale").Click();
-            ElementButton.Get(setting, "Btn-Confirm").Click();
-          
+            ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
+            ElementButton.Get(setting, "bituach-Btn-Confirm").Click();
             return base.State;
         }
 
@@ -79,9 +80,9 @@ namespace Automation.XNes.Lambda
             DirectoryInfo d = new DirectoryInfo(base.setting.lambdaConfig.Params["DestFolder"]);
             FileInfo[] infos = d.GetFiles();
 
-            if (infos.Length>0)
+            if (infos.Length > 0)
             {
-            infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" +"GEMEL "+ year.ToString() + "_" + month.ToString() + ".xml");
+                infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
                 infos = null;
             }
 
@@ -89,10 +90,8 @@ namespace Automation.XNes.Lambda
             //infos[0].Delete();  
             //delete folder
             //d.Delete();
-            
+
         }
 
     }
-
-
 }

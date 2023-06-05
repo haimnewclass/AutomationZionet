@@ -10,7 +10,9 @@ namespace Automation.XNes.Lambda
     {
         public LambdaUrls()
         {
-          base.Params["baseUrl"] = "https://gemelnet.cma.gov.il/";
+          base.Params["baseGemelUrl"] = "https://gemelnet.cma.gov.il/";
+            base.Params["baseBituchUrl"] = "https://bituachnet.cma.gov.il/";
+            base.Params["newPage"] = "https://bituachnet.cma.gov.il/bituachTsuotUI/Tsuot/UI/horadatXMLMain.aspx";
 
         }
     }

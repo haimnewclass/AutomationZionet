@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AutomationZionet.Base;
 using AutomationZionet.Projects;
 using AutomationZionet.Projects.Practice.Scripts.Gmail;
+using Automation.XNes.Lambda.Runner;
 using Automation.XNes.Lambda;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -75,7 +76,18 @@ namespace AutomationZionet.UI
             l1.CopyCompleatedFileToTargetFolder();
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\";
+            LambdaRunAll l1 =new LambdaRunAll();
+            l1.Run(path);
+        }
 
-
+        private void button7_Click(object sender, EventArgs e)
+        {
+            BituchRunner l = new BituchRunner();
+            string month = "11", year = "2003";
+            l.SelectMonthRun(month, year);
+        }
     }
 }

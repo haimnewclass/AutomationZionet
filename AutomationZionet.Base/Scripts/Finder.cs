@@ -45,7 +45,7 @@ namespace AutomationZionet.Base.Scripts
             try
             {
             if (!Elements.Params.ContainsKey(elementName))
-                element = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 0, 1)).Until(driver => driver.FindElement(By.XPath(Elements[elementName]))));
+                element = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 1, 1)).Until(driver => driver.FindElement(By.XPath(Elements[elementName]))));
             }
             catch (OpenQA.Selenium.NoSuchElementException ex)
             {
@@ -64,7 +64,7 @@ namespace AutomationZionet.Base.Scripts
             if (!Elements.Params.ContainsKey(elementName))
                 return null;
 
-            SelectElement element = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 1, 0)).Until(driver => driver.FindElement(By.XPath(Elements[elementName]))));
+            SelectElement element = new SelectElement(new WebDriverWait(driver, new TimeSpan(0, 1,1)).Until(driver => driver.FindElement(By.XPath(Elements[elementName]))));
 
             return element;
 
@@ -75,7 +75,7 @@ namespace AutomationZionet.Base.Scripts
             if (!Elements.Params.ContainsKey(elementName))
                 return null;
 
-            IWebElement element = new WebDriverWait(driver, new TimeSpan(0, 1, 0)).Until(driver => driver.FindElement(By.XPath(Elements[elementName])));
+            IWebElement element = new WebDriverWait(driver, new TimeSpan(0, 0, 1)).Until(driver => driver.FindElement(By.XPath(Elements[elementName])));
 
             return element;
             

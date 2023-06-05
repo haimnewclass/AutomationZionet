@@ -96,9 +96,9 @@ namespace Automation.XNes.Lambda
 
         }
         public void afterFileCreated(object sender, FileSystemEventArgs e)
-        {     
-            if(script2 != null)
-            script2.CopyCompleatedFileToTargetFolder();
+        {
+            if (script2 != null)
+                script2.CopyCompleatedFileToTargetFolder();
             if (script3 != null)
                 script3.oneMonth.CopyCompleatedFileToTargetFolder();
         }

@@ -8,6 +8,7 @@ using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using AutomationZionet.Base.Scripts;
 using OpenQA.Selenium.Chrome;
+using System.Threading;
 
 namespace Automation.XNes.Lambda
 {
@@ -34,6 +35,8 @@ namespace Automation.XNes.Lambda
             ret = ScriptState.Started;
 
             lambdaDownloadOneMonth = new LambdaDownloadOneMonth(WebDriver, base.setting,setting.lambdaConfig["Month"], setting.lambdaConfig["Year"], this.afterFileCreated);
+            //base.setting.lambdaConfig["DestFolder"]= @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\DownloadFiles";
+            lambdaDownloadOneMonth.Run();
 
             return ret;
         }
@@ -42,6 +45,7 @@ namespace Automation.XNes.Lambda
         public void afterFileCreated(object sender, FileSystemEventArgs e)
         {
             AfileSystemEventHandler(sender, e);
+            lambdaDownloadOneMonth.CopyCompleatedFileToTargetFolder();
 
 
         }

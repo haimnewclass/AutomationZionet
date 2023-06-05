@@ -1,5 +1,5 @@
-﻿using AutomationZionet.Base.Driver;
-using AutomationZionet.Base.Runner;
+﻿using Automation.XNes.Lambda.Scripts;
+using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -9,20 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Runner
 {
-    public class SingleRunner:RunnerBase
+    public class BituchRunner
     {
-        public LambdaDownloadOneMonth l1;
-        public void Run( string pathDest,string month,string year)
+        const string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\DownloadFiles";
+        public lambdaBituchOneMonth oneMonth;
+
+        public void SelectMonthRun(string month, string year)
         {
-            string path = pathDest;
             Guid guid = Guid.NewGuid();
             string newFolderPath = path + guid.ToString();
 
+            //create new folder with the new guid name
             if (!System.IO.Directory.Exists(newFolderPath))
                 System.IO.Directory.CreateDirectory(newFolderPath);
 
+            //the defulte folder of download
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddUserProfilePreference("download.default_directory", newFolderPath);
             chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
@@ -31,18 +34,19 @@ namespace Automation.XNes.Lambda
             chromeOptions.AddUserProfilePreference("download.directory_upgrade", true);
             chromeOptions.AddUserProfilePreference("safebrowsing.enabled", true);
 
-
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                l1 = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), month, year, afterFileCreated);
-
-                l1.Run();
-
+                //in the new LambdaSetting saving the new path with the new folder
+                oneMonth = new lambdaBituchOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), month, year, afterFileCreated);
+               
+                oneMonth.Run();
             }
         }
         public void afterFileCreated(object sender, FileSystemEventArgs e)
         {
-            l1.CopyCompleatedFileToTargetFolder();
+            if (oneMonth != null)
+                oneMonth.CopyCompleatedFileToTargetFolder();
+
         }
     }
 }

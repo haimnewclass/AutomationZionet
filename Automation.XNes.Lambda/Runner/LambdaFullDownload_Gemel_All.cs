@@ -14,35 +14,42 @@ namespace Automation.XNes.Lambda
     public class LambdaFullDownload_Gemel_All: LambdaScriptBase
     {
         ScriptState ret = ScriptState.NotStarted;
-        //the local path of the project
         LambdaFullDownload_Gemel lambdaFullDownload_Gemel;
         IWebDriver WebDriver;
         bool IsRunning = false;
-        //get all the gemel files
-        public LambdaFullDownload_Gemel_All(IWebDriver webDriver,LambdaSetting s):base(webDriver,s)
+        public LambdaFullDownload_Gemel_All(IWebDriver webDriver,LambdaSetting s,string newFolderPath) :base(webDriver,s)
         {
             base.setting = s;
             WebDriver = webDriver;
+            base.setting.lambdaConfig["DestFolder"] = newFolderPath;
         }
         public override ScriptState Run()
         {
             ret = ScriptState.Started;
-            for (int i = 0; i < 12; i++)
+            for (int j = 1999; j < 2023; j++)
             {
-                
-                base.setting.lambdaConfig["Month"] = "01";
-                base.setting.lambdaConfig["Year"] = "2010";
+
+            for (int i =1; i < 13; i++)
+            {
+                if(i<10)
+                base.setting.lambdaConfig["Month"] = "0"+i.ToString();
+                else
+                base.setting.lambdaConfig["Month"] = i.ToString();
+
+                base.setting.lambdaConfig["Year"] = j.ToString();
                 lambdaFullDownload_Gemel = new LambdaFullDownload_Gemel(WebDriver, base.setting,this.afterFileCreated);
                 IsRunning = true;
                 lambdaFullDownload_Gemel.Run();
                 //whie IsRunning == true do nothing
                 while(IsRunning==true)
                 {
-                    //
                     System.Threading.Thread.Sleep(100);
                 }
             }
-
+            //two sec
+                System.Threading.Thread.Sleep(1000*60*2);
+            }
+            
             return ret;
         }
 
