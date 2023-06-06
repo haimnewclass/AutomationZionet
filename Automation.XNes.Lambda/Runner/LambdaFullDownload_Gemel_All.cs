@@ -27,10 +27,10 @@ namespace Automation.XNes.Lambda
         public override ScriptState Run()
         {
             ret = ScriptState.Started;
-            for (int j = 2003; j < 2023; j++)
+            for (int j = 1999; j < 2023; j++)
             {
 
-            for (int i =9; i < 13; i++)
+            for (int i =1; i < 13; i++)
             {
                 Thread.Sleep(1500);
 
