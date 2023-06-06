@@ -66,7 +66,7 @@ namespace AutomationZionet.UI
         }
         private void button5_Click(object sender, EventArgs e)
         {
-           string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\";
+           string path = @"C:\projects_excellence\Automation2\";
 
           SingleRunner s1 = new SingleRunner(); 
             s1.Run(path, "01", "2001");
@@ -78,7 +78,7 @@ namespace AutomationZionet.UI
 
         private void button6_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\";
+            string path = @"C:\projects_excellence\Automation2\";
             LambdaRunAll l1 =new LambdaRunAll();
             l1.Run(path);
         }

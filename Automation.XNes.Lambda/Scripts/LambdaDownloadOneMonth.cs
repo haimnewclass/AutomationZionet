@@ -71,14 +71,19 @@ namespace Automation.XNes.Lambda
 
             ElementButton.Get(setting, "Radio-PerutMale").Click();
             ElementButton.Get(setting, "Btn-Confirm").Click();
+
             Thread.Sleep(500);
             string monthYear = base.setting.lambdaConfig.Params["Year"].ToString() + base.setting.lambdaConfig.Params["Month"].ToString();
             string erorrPage = @"https://gemelnet.cma.gov.il/tsuot/ui/tsuotHodXML.aspx?miTkfDivuach=" + monthYear + "&adTkfDivuach=" + monthYear + "&kupot=0000&Dochot=1";
             string currecturl = driver.Url.Substring(0,driver.Url.Length-6);
+
             if(erorrPage== currecturl)
             {
                 undownloadfiles[currect++] = monthYear;
                 watcher.Changed -= fileSystemEventHandler;
+
+                //check
+                return base.State;
             }
 
 
@@ -93,11 +98,26 @@ namespace Automation.XNes.Lambda
             FileInfo[] infos = d.GetFiles();
             try
             {
-                if (infos.Length > 0)
-                {
-                    Thread.Sleep(1500);
-                    infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
-                }                
+
+                    //check!
+                    if (infos.Length == 1)
+                    {
+                        Thread.Sleep(1500);
+                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+
+                    }
+                    else if (infos.Length == 0)
+                    {
+                       Thread.Sleep(1500);
+                       LambdaDownloadOneMonth lambda = new LambdaDownloadOneMonth(this.driver, this.setting, this.month, this.year, this.fileSystemEventHandler);
+                       lambda.Run();
+                    }
+                    else if (infos.Length > 1)
+                    {
+                        throw new Exception("more than one file in folder!");
+                    }
+
+
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using AutomationZionet.Base.Scripts;
 using OpenQA.Selenium.Chrome;
+using System.Threading;
 
 namespace Automation.XNes.Lambda
 {
@@ -31,7 +32,9 @@ namespace Automation.XNes.Lambda
 
             for (int i =1; i < 13; i++)
             {
-                if(i<10)
+                Thread.Sleep(1500);
+
+                if (i<10)
                 base.setting.lambdaConfig["Month"] = "0"+i.ToString();
                 else
                 base.setting.lambdaConfig["Month"] = i.ToString();
@@ -47,7 +50,7 @@ namespace Automation.XNes.Lambda
                 }
             }
             //two sec
-                System.Threading.Thread.Sleep(1000*60*2);
+                System.Threading.Thread.Sleep(1000*10);
             }
             
             return ret;

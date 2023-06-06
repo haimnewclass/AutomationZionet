@@ -35,7 +35,7 @@ namespace Automation.XNes.Lambda
             var before= Directory.GetFiles(this.Config["Driver_Path"]);
             base.State = ScriptState.Started;
 
-            GoToUrl("baseUrl");
+            GoToUrl("baseGemelUrl");
             ElementButton.Get(setting, "Btn-knisa").Click();
             ElementButton.Get(setting, "Select-All-Kupot").Click();
             ElementButton.Get(setting, "Btn-Add").Click();
