@@ -27,12 +27,17 @@ namespace Automation.XNes.Lambda
         public override ScriptState Run()
         {
             ret = ScriptState.Started;
-            for (int j = 1999; j < 2023; j++)
+            for (int j = 2003; j < 2023; j++)
             {
 
-            for (int i =1; i < 13; i++)
+            for (int i =9; i < 13; i++)
             {
                 Thread.Sleep(1500);
+
+                if(j==2003 && i == 10)
+                    {
+                        continue;
+                    }
 
                 if (i<10)
                 base.setting.lambdaConfig["Month"] = "0"+i.ToString();

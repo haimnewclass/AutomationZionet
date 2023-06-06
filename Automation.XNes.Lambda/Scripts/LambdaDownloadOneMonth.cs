@@ -81,9 +81,6 @@ namespace Automation.XNes.Lambda
             {
                 undownloadfiles[currect++] = monthYear;
                 watcher.Changed -= fileSystemEventHandler;
-
-                //check
-                return base.State;
             }
 
 
