@@ -34,7 +34,26 @@ namespace Automation.XNes.Lambda
             {
                 Thread.Sleep(1500);
 
-                if(j==2003 && i == 10)
+                if(j==2003 && i == 10 ||
+                   j == 2004 && i == 4 ||
+                   j == 2004 && i == 6 ||
+                   j == 2005 && i == 7 ||
+                   j == 2006 && i == 1 ||
+                   j == 2006 && i == 2 ||
+                   j == 2006 && i == 7 ||
+                   j == 2007 && i == 5 ||
+                   j == 2008 && i == 2 ||
+                   j == 2008 && i == 7 ||
+                   j == 2008 && i == 9 ||
+                   j == 2009 && i == 11 ||
+                   j == 2009 && i == 12 ||
+                   j == 2010 && i == 1 ||
+                   j == 2010 && i == 2 ||
+                   j == 2013 && i == 6 ||
+                   j == 2013 && i == 12 ||
+                   j == 2015 && i == 5 ||
+                   j == 2016 && i == 2 ||
+                   j == 2019 && i == 4)
                     {
                         continue;
                     }
@@ -54,7 +73,7 @@ namespace Automation.XNes.Lambda
                     System.Threading.Thread.Sleep(100);
                 }
             }
-            //two sec
+            //TODO: change to two minutes (1000*60*2)
                 System.Threading.Thread.Sleep(1000*10);
             }
             
