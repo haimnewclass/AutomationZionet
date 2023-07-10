@@ -21,12 +21,12 @@ namespace Automation.XNes.Lambda
         public string month { get; set; }
         public string newFolderPath { get; set; }
         protected FileSystemWatcher watcher;
-        public static int currect=0;
-        public static string[] undownloadfiles = new string[100]; 
+        public static int currect = 0;
+        public static string[] undownloadfiles = new string[100];
 
         FileSystemEventHandler fileSystemEventHandler;
 
-        public LambdaDownloadOneMonth(IWebDriver d, LambdaSetting s,string month,string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
+        public LambdaDownloadOneMonth(IWebDriver d, LambdaSetting s, string month, string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
         {
             fileSystemEventHandler = afileSystemEventHandler;
             setting = s;
@@ -72,12 +72,12 @@ namespace Automation.XNes.Lambda
             ElementButton.Get(setting, "Radio-PerutMale").Click();
             ElementButton.Get(setting, "Btn-Confirm").Click();
 
-            Thread.Sleep(500);
+            Thread.Sleep(2000);
             string monthYear = base.setting.lambdaConfig.Params["Year"].ToString() + base.setting.lambdaConfig.Params["Month"].ToString();
             string erorrPage = @"https://gemelnet.cma.gov.il/tsuot/ui/tsuotHodXML.aspx?miTkfDivuach=" + monthYear + "&adTkfDivuach=" + monthYear + "&kupot=0000&Dochot=1";
-            string currecturl = driver.Url.Substring(0,driver.Url.Length-6);
+            string currecturl = driver.Url.Substring(0, driver.Url.Length - 6);
 
-            if(erorrPage== currecturl)
+            if (erorrPage == currecturl)
             {
                 undownloadfiles[currect++] = monthYear;
                 watcher.Changed -= fileSystemEventHandler;
@@ -87,7 +87,7 @@ namespace Automation.XNes.Lambda
             return base.State;
         }
 
-        //after compleated to create th new file 
+        //after compleated to create th new file
         public async void CopyCompleatedFileToTargetFolder()
         {
             watcher.Changed -= fileSystemEventHandler;
@@ -96,23 +96,23 @@ namespace Automation.XNes.Lambda
             try
             {
 
-                    //check!
-                    if (infos.Length == 1)
-                    {
-                        Thread.Sleep(1500);
-                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                //check!
+                if (infos.Length == 1)
+                {
+                    Thread.Sleep(1500);
+                    infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
 
-                    }
-                    else if (infos.Length == 0)
-                    {
-                       Thread.Sleep(1500);
-                       LambdaDownloadOneMonth lambda = new LambdaDownloadOneMonth(this.driver, this.setting, this.month, this.year, this.fileSystemEventHandler);
-                       lambda.Run();
-                    }
-                    else if (infos.Length > 1)
-                    {
-                        throw new Exception("more than one file in folder!");
-                    }
+                }
+                else if (infos.Length == 0)
+                {
+                    Thread.Sleep(1500);
+                    LambdaDownloadOneMonth lambda = new LambdaDownloadOneMonth(this.driver, this.setting, this.month, this.year, this.fileSystemEventHandler);
+                    lambda.Run();
+                }
+                else if (infos.Length > 1)
+                {
+                    throw new Exception("more than one file in folder!");
+                }
 
 
             }

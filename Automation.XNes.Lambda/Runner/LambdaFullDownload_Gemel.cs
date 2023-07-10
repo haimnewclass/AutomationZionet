@@ -15,7 +15,7 @@ namespace Automation.XNes.Lambda
     public class LambdaFullDownload_Gemel: LambdaScriptBase
     {
         //the local path of the project
-        const string path = @"C:\projects_excellence\Automation2\GemelDownload";
+       // const string path = @"C:\projects_excellence\Automation2\GemelDownload";
         public LambdaStartSelect script1;
         public LambdaDownloadOneMonth script2;
         public LambdaDownloadBetYears script3;
