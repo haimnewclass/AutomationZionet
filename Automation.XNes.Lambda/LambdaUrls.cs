@@ -12,6 +12,7 @@ namespace Automation.XNes.Lambda
         {
           base.Params["baseGemelUrl"] = "https://gemelnet.cma.gov.il/";
             base.Params["baseBituchUrl"] = "https://bituachnet.cma.gov.il/";
+            base.Params["pensiaBituchUrl"] = "https://pensyanet.cma.gov.il/";
             base.Params["newPage"] = "https://bituachnet.cma.gov.il/bituachTsuotUI/Tsuot/UI/horadatXMLMain.aspx";
 
         }

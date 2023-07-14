@@ -41,6 +41,9 @@ namespace Automation.XNes.Lambda
             base.Elements["bituach-Radio-PerutMale"] = @"//*[@id='rdl_2']";
             base.Elements["bituach-Btn-Confirm"] = @"//*[@id='cbReturn']";
 
+            //bituach-Pensia
+            base.Elements["pensia-Btn-knisa"] = @"/html/body/main/section/div/div[2]/div[2]/div/div[2]/div[1]/div[3]/div[4]/a/span";                      
+
         }
     }
 }

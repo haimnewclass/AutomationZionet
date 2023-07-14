@@ -56,13 +56,15 @@ namespace Automation.XNes.Lambda.Scripts
             GoToUrl("baseBituchUrl");
             ElementButton.Get(setting, "bituach-Btn-knisa").Click();
             ElementButton.Get(setting, "bituach-Select-All-Kupot").Click();
-            Thread.Sleep(1000);
+            Wait(1500);
+            
             ElementButton.Get(setting, "bituach-Btn-Add").Click();
             ElementButton.Get(setting, "bituach-Btn-Download-Xml").Click();
             GoToUrl("newPage");
             string s= driver.Url.ToString();
             Console.WriteLine(s);
             Thread.Sleep(1000);
+            Wait(1000);
             ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
             ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
             ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);

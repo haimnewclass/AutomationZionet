@@ -150,6 +150,7 @@
   <ItemGroup>
     <Compile Include="LambdaConfig.cs" />
     <Compile Include="Runner\BituchRunner.cs" />
+    <Compile Include="Runner\PensiaRunner.cs" />
     <Compile Include="Scripts\lambdaBituchOneMonth.cs" />
     <Compile Include="Scripts\LambdaDownloadBetYears.cs" />
     <Compile Include="LambdaFinder.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Runner\LambdaRunAll.cs" />
     <Compile Include="Runner\LambdaRunner.cs" />
     <Compile Include="LambdaScriptBase.cs" />
+    <Compile Include="Scripts\Pensia.cs" />
     <Compile Include="Scripts\LambdaDownloadOneMonth.cs" />
     <Compile Include="Scripts\LambdaStartSelect.cs" />
     <Compile Include="LambdaUrls.cs" />

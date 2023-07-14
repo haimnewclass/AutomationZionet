@@ -89,5 +89,11 @@ namespace AutomationZionet.UI
             string month = "11", year = "2003";
             l.SelectMonthRun(month, year);
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            PensiaRunner pensiaRunner = new PensiaRunner();
+            pensiaRunner.Run();
+        }
     }
 }
