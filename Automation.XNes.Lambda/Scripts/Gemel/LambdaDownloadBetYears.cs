@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 using System.IO;
 using AutomationZionet.Base.WebElements;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Scripts.Gemel
 {
     public class LambdaDownloadBetYears : LambdaScriptBase
     {

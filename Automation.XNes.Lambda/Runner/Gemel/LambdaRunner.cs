@@ -4,11 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Automation.XNes.Lambda.Scripts.Gemel;
 using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Runner.Gemel
 {
     public class LambdaRunner
     {

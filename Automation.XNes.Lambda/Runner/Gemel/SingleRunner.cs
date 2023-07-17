@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceProcess;
 using System.ServiceProcess;
+using Automation.XNes.Lambda.Scripts.Gemel;
 
-
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Runner.Gemel
 {
     public class SingleRunner:RunnerBase
     {

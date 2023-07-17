@@ -35,14 +35,22 @@ namespace Automation.XNes.Lambda
             base.Elements["bituach-Btn-Add"] = @"//*[@id='addone']";
             base.Elements["bituach-Btn-Download-Xml"] = @"//*[@id='cbXML']";
             base.Elements["bituach-Select-From-Month"] = @"//*[@id='hodashme']";
-            base.Elements["bituach-Select-From-Year"] = @"//*[@id'shanimme']";
+            base.Elements["bituach-Select-From-Year"] = @"/html/body/form/span/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table[1]/tbody/tr[4]/td[1]/span/table/tbody/tr/td[5]/select";
             base.Elements["bituach-Select-Until-Month"] = @"//*[@id='hodashad']";
             base.Elements["bituach-Select-Until-Year"] = @"//*[@id='shanimad']";
             base.Elements["bituach-Radio-PerutMale"] = @"//*[@id='rdl_2']";
-            base.Elements["bituach-Btn-Confirm"] = @"//*[@id='cbReturn']";
+            base.Elements["bituach-Btn-Confirm"] = @"/html/body/form/span/table/tbody/tr[2]/td/table/tbody/tr/td[7]/input";
 
-            //bituach-Pensia
-            base.Elements["pensia-Btn-knisa"] = @"/html/body/main/section/div/div[2]/div[2]/div/div[2]/div[1]/div[3]/div[4]/a/span";                      
+            //Pensia-net
+            base.Elements["pensia-Btn-knisa"] = @"/html/body/main/section/div/div[2]/div[2]/div/div[2]/div[1]/div[3]/div[4]/a/span";
+            base.Elements["pensia-Btn-options"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[1]/div/div[1]/div[2]/div[1]/div[2]/div/div";
+            base.Elements["pensia-Btn-All-New-Option"] = @"/html/body/div[1]/div/div[2]/ul/li[1]";
+            base.Elements["pensia-Input-Select-Start-Date"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input";
+            base.Elements["pensia-Input-Select-End-Date"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input";
+            base.Elements["pensia-Btn-Download-Xml"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[3]/div[1]/div[3]";
+            base.Elements["pensia-Radio-Full-Details"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[2]/div[3]/div[2]/div/div[2]/label";
+            base.Elements["pensia-Radio-General-Details"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[2]/div[3]/div[1]/div/div[2]/label";
+            base.Elements["pensia-Btn-Dounload-Xml-File"] = @"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[2]/div[3]/div[3]/div";
 
         }
     }

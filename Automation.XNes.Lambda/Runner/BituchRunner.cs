@@ -13,10 +13,10 @@ namespace Automation.XNes.Lambda.Runner
 {
     public class BituchRunner
     {
-        const string path = @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\DownloadFiles";
+        const string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles";
         public lambdaBituchOneMonth oneMonth;
 
-        public void SelectMonthRun(string month, string year)
+        public void SelectMonthRun(string month, string year, bool isFullDetail)
         {
             Guid guid = Guid.NewGuid();
             string newFolderPath = path + guid.ToString();
@@ -37,7 +37,7 @@ namespace Automation.XNes.Lambda.Runner
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
                 //in the new LambdaSetting saving the new path with the new folder
-                oneMonth = new lambdaBituchOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), month, year, afterFileCreated);
+                oneMonth = new lambdaBituchOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), month, year, isFullDetail, afterFileCreated);
                
                 oneMonth.Run();
             }

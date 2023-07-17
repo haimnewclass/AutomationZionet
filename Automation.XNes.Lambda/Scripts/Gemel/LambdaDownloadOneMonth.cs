@@ -11,7 +11,7 @@ using System.IO;
 using AutomationZionet.Base.WebElements;
 using OpenQA.Selenium.Chrome;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Scripts.Gemel
 {
     public class LambdaDownloadOneMonth : LambdaScriptBase
     {
@@ -65,9 +65,13 @@ namespace Automation.XNes.Lambda
             ElementButton.Get(setting, "Btn-Download-Xml").Click();
             Thread.Sleep(3000);
             ElementSelect.Get(setting, "Select-one").SelectByValue(month);
+            Thread.Sleep(100);
             ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+            Thread.Sleep(100);
             ElementSelect.Get(setting, "Select-three").SelectByValue(month);
+            Thread.Sleep(100);
             ElementSelect.Get(setting, "Select-four").SelectByValue(year);
+            Thread.Sleep(100);
 
             ElementButton.Get(setting, "Radio-PerutMale").Click();
             ElementButton.Get(setting, "Btn-Confirm").Click();

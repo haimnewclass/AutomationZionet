@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Runner.Gemel
 {
     public class LambdaRunAll
     {

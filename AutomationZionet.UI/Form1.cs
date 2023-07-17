@@ -16,6 +16,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using AutomationZionet.Base.Driver;
 using System.IO;
+using Automation.XNes.Lambda.Scripts.Gemel;
+using Automation.XNes.Lambda.Runner.Gemel;
 
 namespace AutomationZionet.UI
 {
@@ -78,7 +80,7 @@ namespace AutomationZionet.UI
 
         private void button6_Click(object sender, EventArgs e)
         {
-            string path = @"C:\projects_excellence\Automation2\";
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll l1 =new LambdaRunAll();
             l1.Run(path);
         }
@@ -87,13 +89,12 @@ namespace AutomationZionet.UI
         {
             BituchRunner l = new BituchRunner();
             string month = "11", year = "2003";
-            l.SelectMonthRun(month, year);
+            l.SelectMonthRun(month, year, true);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            PensiaRunner pensiaRunner = new PensiaRunner();
-            pensiaRunner.Run();
+            
         }
     }
 }

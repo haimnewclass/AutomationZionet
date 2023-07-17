@@ -150,21 +150,24 @@
   <ItemGroup>
     <Compile Include="LambdaConfig.cs" />
     <Compile Include="Runner\BituchRunner.cs" />
+    <Compile Include="Runner\Gemel\LambdaFullDownload_Gemel.cs" />
+    <Compile Include="Runner\Gemel\LambdaFullDownload_Gemel_All.cs" />
+    <Compile Include="Runner\Gemel\LambdaRunAll.cs" />
+    <Compile Include="Runner\Gemel\LambdaRunner.cs" />
+    <Compile Include="Runner\Gemel\SingleRunner.cs" />
+    <Compile Include="Runner\PensiaFullDownload_Pensia.cs" />
+    <Compile Include="Runner\PensiaFullDownload_Pensia_All.cs" />
+    <Compile Include="Runner\PensiaRunAll.cs" />
     <Compile Include="Runner\PensiaRunner.cs" />
+    <Compile Include="Scripts\Gemel\LambdaDownloadBetYears.cs" />
+    <Compile Include="Scripts\Gemel\LambdaDownloadOneMonth.cs" />
+    <Compile Include="Scripts\Gemel\LambdaStartSelect.cs" />
     <Compile Include="Scripts\lambdaBituchOneMonth.cs" />
-    <Compile Include="Scripts\LambdaDownloadBetYears.cs" />
     <Compile Include="LambdaFinder.cs" />
-    <Compile Include="Runner\LambdaFullDownload_Gemel_All.cs" />
-    <Compile Include="Runner\LambdaFullDownload_Gemel.cs" />
-    <Compile Include="Runner\LambdaRunAll.cs" />
-    <Compile Include="Runner\LambdaRunner.cs" />
     <Compile Include="LambdaScriptBase.cs" />
-    <Compile Include="Scripts\Pensia.cs" />
-    <Compile Include="Scripts\LambdaDownloadOneMonth.cs" />
-    <Compile Include="Scripts\LambdaStartSelect.cs" />
+    <Compile Include="Scripts\PensiaDownloadOneMonth.cs" />
     <Compile Include="LambdaUrls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Runner\SingleRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutomationZionet.Base\AutomationZionet.Base.csproj">
@@ -176,7 +179,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Runner\Bituach\" />
+    <Folder Include="Runner\Pensia\" />
+    <Folder Include="Scripts\Bituach\" />
+    <Folder Include="Scripts\Pensia\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

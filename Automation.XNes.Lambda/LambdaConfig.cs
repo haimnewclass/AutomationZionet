@@ -15,8 +15,8 @@ namespace Automation.XNes.Lambda
         {
             base.Params["Year_from"] = "1999";
             base.Params["Year_to"] = "2023";
-            base.Params["New_Driver_Path"] = @"C:\a\Gemel";
-            base.Params["Driver_Path"] = @"C:\a\Gemel\GemelDownload";
+            base.Params["New_Driver_Path"] = @"C:\projects_excellence\Automation_New\savedFiles\gemel";
+            base.Params["Driver_Path"] = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel";
            
         }
 

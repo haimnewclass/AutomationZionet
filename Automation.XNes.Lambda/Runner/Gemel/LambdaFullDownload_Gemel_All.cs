@@ -10,7 +10,7 @@ using AutomationZionet.Base.Scripts;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Runner.Gemel
 {
     public class LambdaFullDownload_Gemel_All : LambdaScriptBase
     {

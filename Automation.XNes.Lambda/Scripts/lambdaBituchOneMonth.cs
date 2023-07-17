@@ -17,18 +17,22 @@ namespace Automation.XNes.Lambda.Scripts
         public IWebDriver driver { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+
+        public bool isFullDetails { get; set; }
         public string newFolderPath { get; set; }
+        
         protected FileSystemWatcher watcher;
 
         FileSystemEventHandler fileSystemEventHandler;
 
-        public lambdaBituchOneMonth(IWebDriver d, LambdaSetting s, string month, string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
+        public lambdaBituchOneMonth(IWebDriver d, LambdaSetting s, string month, string year, bool isFullDetails, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
         {
             fileSystemEventHandler = afileSystemEventHandler;
             setting = s;
             driver = d;
             this.year = year;
             this.month = month;
+            this.isFullDetails = isFullDetails;
             this.newFolderPath = base.setting.lambdaConfig.Params["DestFolder"];
         }
 
@@ -59,8 +63,10 @@ namespace Automation.XNes.Lambda.Scripts
             Wait(1500);
             
             ElementButton.Get(setting, "bituach-Btn-Add").Click();
+            Wait(1500);
+
             ElementButton.Get(setting, "bituach-Btn-Download-Xml").Click();
-            GoToUrl("newPage");
+            GoToUrl("BituachPopingWindow");
             string s= driver.Url.ToString();
             Console.WriteLine(s);
             Thread.Sleep(1000);
@@ -69,9 +75,12 @@ namespace Automation.XNes.Lambda.Scripts
             ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
             ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
             ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
-
-            ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
+            if (isFullDetails)
+            {
+                ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
+            }
             ElementButton.Get(setting, "bituach-Btn-Confirm").Click();
+            Thread.Sleep(5000);
             return base.State;
         }
 
@@ -84,7 +93,7 @@ namespace Automation.XNes.Lambda.Scripts
 
             if (infos.Length > 0)
             {
-                infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "BITUACH " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
                 infos = null;
             }
 
