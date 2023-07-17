@@ -31,7 +31,7 @@ namespace Automation.XNes.Lambda
 
             //bituach-net
             base.Elements["bituach-Btn-knisa"] = @"//*[@id='knisa']";
-            base.Elements["bituach-Select-All-Kupot"] = @"//*[@id='output']/option[1]";
+            base.Elements["bituach-Select-All-Kupot"] = @"/html/body/div[1]/section/form/div[5]/table/tbody/tr[2]/td[1]/table/tbody/tr/td[5]/span/span/select/option[1]";
             base.Elements["bituach-Btn-Add"] = @"//*[@id='addone']";
             base.Elements["bituach-Btn-Download-Xml"] = @"//*[@id='cbXML']";
             base.Elements["bituach-Select-From-Month"] = @"//*[@id='hodashme']";

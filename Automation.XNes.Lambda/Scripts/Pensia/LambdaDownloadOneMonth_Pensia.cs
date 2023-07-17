@@ -11,9 +11,9 @@ using System.IO;
 using AutomationZionet.Base.WebElements;
 using OpenQA.Selenium.Chrome;
 
-namespace Automation.XNes.Lambda.Scripts.Bituach
+namespace Automation.XNes.Lambda.Scripts.Pensia
 {
-    public class LambdaDownloadOneMonth_Bituach : LambdaScriptBase
+    public class LambdaDownloadOneMonth_Pensia : LambdaScriptBase
     {
         public LambdaSetting setting { get; set; }
         public IWebDriver driver { get; set; }
@@ -27,13 +27,13 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
 
         FileSystemEventHandler fileSystemEventHandler;
 
-        public LambdaDownloadOneMonth_Bituach(IWebDriver d, LambdaSetting s, string month, string year, bool isFullDetails, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
+        public LambdaDownloadOneMonth_Pensia(IWebDriver d, LambdaSetting s, string monthInHebrew, string year, bool isFullDetails, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
         {
             fileSystemEventHandler = afileSystemEventHandler;
             setting = s;
             driver = d;
             this.year = year;
-            this.month = month;
+            this.month = monthInHebrew;
             this.isFullDetails = isFullDetails;
             this.newFolderPath = base.setting.lambdaConfig.Params["DestFolder"];
         }
@@ -59,30 +59,29 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
             watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
 
-            GoToUrl("baseBituchUrl");
-            ElementButton.Get(setting, "bituach-Btn-knisa").Click();
-            Wait(1500);
-            ElementButton.Get(setting, "bituach-Select-All-Kupot").Click();
-            Wait(1500);
-            ElementButton.Get(setting, "bituach-Btn-Add").Click();
-            Wait(1500);
-            ElementButton.Get(setting, "bituach-Btn-Download-Xml").Click();
-
-            GoToUrl("BituachPopingWindow");
-            string s = driver.Url.ToString();
-            Console.WriteLine(s);
-            Thread.Sleep(1000);
-            Wait(1000);
-            ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
-            ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
-            ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
-            ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            GoToUrl("basePensiaUrl");
+            ElementButton.Get(setting, "pensia-Btn-knisa").Click();
+            Thread.Sleep(8000);
+            ElementButton.Get(setting, "pensia-Btn-options").Click();
+            ElementButton.Get(setting, "pensia-Btn-All-New-Option").Click();
+            driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input")).Clear();
+            ElementInput.Get(setting, "pensia-Input-Select-Start-Date").SendKeys(month + " " + year);
+            Thread.Sleep(500);
+            driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input")).Clear();
+            ElementInput.Get(setting, "pensia-Input-Select-End-Date").SendKeys(month + " " + year);
+            Thread.Sleep(500);
+            ElementButton.Get(setting, "pensia-Btn-Download-Xml").Click();
             if (isFullDetails)
             {
-                ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
+                ElementButton.Get(setting, "pensia-Radio-Full-Details").Click();
             }
-            ElementButton.Get(setting, "bituach-Btn-Confirm").Click();
-            Thread.Sleep(5000);
+            else
+            {
+                ElementButton.Get(setting, "pensia-Radio-General-Details").Click();
+            }
+            
+            ElementButton.Get(setting, "pensia-Btn-Dounload-Xml-File").Click();
+            Thread.Sleep(3000);
 
             return base.State;
         }
@@ -100,13 +99,13 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
                 if (infos.Length == 1)
                 {
                     Thread.Sleep(1500);
-                    infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                    infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
 
                 }
                 else if (infos.Length == 0)
                 {
                     Thread.Sleep(1500);
-                    LambdaDownloadOneMonth_Bituach lambda = new LambdaDownloadOneMonth_Bituach(this.driver, this.setting, this.month, this.year, this.isFullDetails, this.fileSystemEventHandler);
+                    LambdaDownloadOneMonth_Pensia lambda = new LambdaDownloadOneMonth_Pensia(this.driver, this.setting, this.month, this.year, this.isFullDetails, this.fileSystemEventHandler);
                     lambda.Run();
                 }
                 else if (infos.Length > 1)

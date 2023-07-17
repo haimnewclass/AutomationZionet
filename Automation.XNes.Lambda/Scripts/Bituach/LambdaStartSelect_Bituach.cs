@@ -20,51 +20,67 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
         public int year_from;
         public int year_to;
         public string month;
+        public bool isFullDetails;
         public string newFolderPath { get; set; }
-        public LambdaStartSelect_Bituach(IWebDriver d, LambdaSetting s) : base(d, s)
+        public LambdaStartSelect_Bituach(IWebDriver d, LambdaSetting s, bool isFullDetails) : base(d, s)
         {
             setting = s;
             driver = d;
-            year_from = int.Parse(this.Config["Year_from"]);
-            year_to = int.Parse(this.Config["Year_to"]);
+            year_from = int.Parse(this.Config["bituach_Year_from"]);
+            year_to = int.Parse(this.Config["bituach_Year_to"]);
+            this.isFullDetails = isFullDetails;
             this.newFolderPath = base.setting.lambdaConfig.Params["DestFolder"];
 
         }
         public override ScriptState Run()
         {
-            var before = Directory.GetFiles(this.Config["Driver_Path"]);
+            var before = Directory.GetFiles(this.Config["bituach_Driver_Path"]);
             base.State = ScriptState.Started;
 
-            GoToUrl("baseGemelUrl");
-            System.Threading.Thread.Sleep(3000);
-            ElementButton.Get(setting, "Btn-knisa").Click();
-            ElementButton.Get(setting, "Select-All-Kupot").Click();
-            ElementButton.Get(setting, "Btn-Add").Click();
-            ElementButton.Get(setting, "Btn-Download-Xml").Click();
+            GoToUrl("baseBituchUrl");
+            ElementButton.Get(setting, "bituach-Btn-knisa").Click();
+            Wait(1500);
+            ElementButton.Get(setting, "bituach-Select-All-Kupot").Click();
+            Wait(1500);
+            ElementButton.Get(setting, "bituach-Btn-Add").Click();
+            Wait(1500);
+            ElementButton.Get(setting, "bituach-Btn-Download-Xml").Click();
             for (int j = year_from; j < year_to; j++)
             {
                 for (int i = 1; i < 13; i++)
                 {
 
-                    DirectoryInfo d = new DirectoryInfo(this.Config["Driver_Path"]);
+                    DirectoryInfo d = new DirectoryInfo(this.Config["bituach_Driver_Path"]);
 
                     d.GetFiles().All(x => { x.Delete(); return true; });
 
                     if (i < 10)
-                        month = "0" + i.ToString();
+                        month = i.ToString();
                     else
                         month = i.ToString();
 
-                    ElementSelect.Get(setting, "Select-one").SelectByValue(month);
-                    ElementSelect.Get(setting, "Select-two").SelectByValue(j.ToString());
-                    ElementSelect.Get(setting, "Select-three").SelectByValue(month);
-                    ElementSelect.Get(setting, "Select-four").SelectByValue(j.ToString());
+                    GoToUrl("BituachPopingWindow");
+                    string s = driver.Url.ToString();
+                    Console.WriteLine(s);
+                    Thread.Sleep(1000);
+                    Wait(1000);
+                    ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
+                    ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year_from.ToString());
+                    ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
+                    ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year_to.ToString());
+                    if (isFullDetails)
+                    {
+                        ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
+                    }
+                    else
+                    {
 
-                    ElementButton.Get(setting, "Radio-PerutMale").Click();
-                    ElementButton.Get(setting, "Btn-Confirm").Click();
-                    Thread.Sleep(3000);
+                    }
+                    ElementButton.Get(setting, "bituach-Btn-Confirm").Click();
 
-                  
+                    Thread.Sleep(5000);
+
+
 
                 }
             }

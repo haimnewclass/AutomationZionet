@@ -4,22 +4,22 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Automation.XNes.Lambda.Scripts.Bituach;
+using Automation.XNes.Lambda.Scripts.Pensia;
 using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Automation.XNes.Lambda.Runner.Bituach
+namespace Automation.XNes.Lambda.Runner.Pensia
 {
-    public class LambdaRunner_Bituach
+    public class LambdaRunner_Pensia
     {
         //the local path of the project
-        const string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach";
+        const string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia";
         const bool isFullDetails = false;
 
-        public LambdaStartSelect_Bituach script1;
-        public LambdaDownloadOneMonth_Bituach script2;
-        public LambdaDownloadBetYears_Bituach script3;
+        public LambdaStartSelect_Pensia script1;
+        public LambdaDownloadOneMonth_Pensia script2;
+        public LambdaDownloadBetYears_Pensia script3;
 
 
         //get all the gemel files
@@ -36,7 +36,7 @@ namespace Automation.XNes.Lambda.Runner.Bituach
             //using (IWebDriver driver = new ChromeDriver("Driver_Path", chromeOptions))
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                LambdaStartSelect_Bituach startRun = new LambdaStartSelect_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver),path), isFullDetails);
+                LambdaStartSelect_Pensia startRun = new LambdaStartSelect_Pensia(driver, new LambdaSetting(driver, new LambdaFinder(driver),path), isFullDetails);
 
                 startRun.Run();
             }
@@ -65,7 +65,7 @@ namespace Automation.XNes.Lambda.Runner.Bituach
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
                 //in the new LambdaSetting saving the new path with the new folder
-                script2  = new LambdaDownloadOneMonth_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),month,year,isFullDetails, afterFileCreated);
+                script2  = new LambdaDownloadOneMonth_Pensia(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),month,year,isFullDetails, afterFileCreated);
 
                 script2.Run();
             }
@@ -90,7 +90,7 @@ namespace Automation.XNes.Lambda.Runner.Bituach
 
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                script3 = new LambdaDownloadBetYears_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), startYear, endYear, isFullDetails, afterFileCreated);
+                script3 = new LambdaDownloadBetYears_Pensia(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), startYear, endYear, isFullDetails, afterFileCreated);
 
                 script3.Run();
             DirectoryInfo d = new DirectoryInfo(newFolderPath);

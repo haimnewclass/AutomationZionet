@@ -20,7 +20,7 @@ using Automation.XNes.Lambda.Runner.Gemel;
 using Automation.XNes.Lambda.Runner.Bituach;
 using Automation.XNes.Lambda.Scripts.Bituach;
 using Automation.XNes.Lambda.Scripts.Gemel;
-
+using Automation.XNes.Lambda.Runner.Pensia;
 
 namespace AutomationZionet.UI
 {
@@ -97,7 +97,9 @@ namespace AutomationZionet.UI
 
         private void button8_Click(object sender, EventArgs e)
         {
-            
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
+            LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
+            l1.Run(path, true);
         }
     }
 }
