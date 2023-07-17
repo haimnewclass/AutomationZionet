@@ -149,16 +149,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LambdaConfig.cs" />
+    <Compile Include="Runner\Bituach\LambdaFullDownload_Bituach.cs" />
+    <Compile Include="Runner\Bituach\LambdaFullDownload_Bituach_All.cs" />
+    <Compile Include="Runner\Bituach\LambdaRunAll_Bituach.cs" />
+    <Compile Include="Runner\Bituach\LambdaRunner_Bituach.cs" />
+    <Compile Include="Runner\Bituach\SingleRunner_Bituach.cs" />
     <Compile Include="Runner\BituchRunner.cs" />
     <Compile Include="Runner\Gemel\LambdaFullDownload_Gemel.cs" />
     <Compile Include="Runner\Gemel\LambdaFullDownload_Gemel_All.cs" />
     <Compile Include="Runner\Gemel\LambdaRunAll.cs" />
     <Compile Include="Runner\Gemel\LambdaRunner.cs" />
     <Compile Include="Runner\Gemel\SingleRunner.cs" />
-    <Compile Include="Runner\PensiaFullDownload_Pensia.cs" />
-    <Compile Include="Runner\PensiaFullDownload_Pensia_All.cs" />
-    <Compile Include="Runner\PensiaRunAll.cs" />
     <Compile Include="Runner\PensiaRunner.cs" />
+    <Compile Include="Scripts\Bituach\LambdaDownloadBetYears_Bituach.cs" />
+    <Compile Include="Scripts\Bituach\LambdaDownloadOneMonth_Bituach.cs" />
+    <Compile Include="Scripts\Bituach\LambdaStartSelect_Bituach.cs" />
     <Compile Include="Scripts\Gemel\LambdaDownloadBetYears.cs" />
     <Compile Include="Scripts\Gemel\LambdaDownloadOneMonth.cs" />
     <Compile Include="Scripts\Gemel\LambdaStartSelect.cs" />
@@ -180,9 +185,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Runner\Bituach\" />
     <Folder Include="Runner\Pensia\" />
-    <Folder Include="Scripts\Bituach\" />
     <Folder Include="Scripts\Pensia\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

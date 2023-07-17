@@ -16,8 +16,11 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using AutomationZionet.Base.Driver;
 using System.IO;
-using Automation.XNes.Lambda.Scripts.Gemel;
 using Automation.XNes.Lambda.Runner.Gemel;
+using Automation.XNes.Lambda.Runner.Bituach;
+using Automation.XNes.Lambda.Scripts.Bituach;
+using Automation.XNes.Lambda.Scripts.Gemel;
+
 
 namespace AutomationZionet.UI
 {
@@ -87,9 +90,9 @@ namespace AutomationZionet.UI
 
         private void button7_Click(object sender, EventArgs e)
         {
-            BituchRunner l = new BituchRunner();
-            string month = "11", year = "2003";
-            l.SelectMonthRun(month, year, true);
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
+            LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
+            l1.Run(path, true);
         }
 
         private void button8_Click(object sender, EventArgs e)

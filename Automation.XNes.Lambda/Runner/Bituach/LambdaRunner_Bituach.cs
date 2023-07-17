@@ -4,20 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Automation.XNes.Lambda.Scripts.Gemel;
+using Automation.XNes.Lambda.Scripts.Bituach;
 using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Automation.XNes.Lambda.Runner.Gemel
+namespace Automation.XNes.Lambda.Runner.Bituach
 {
-    public class LambdaRunner
+    public class LambdaRunner_Bituach
     {
         //the local path of the project
-        const string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel";
-        public LambdaStartSelect script1;
-        public LambdaDownloadOneMonth script2;
-        public LambdaDownloadBetYears script3;
+        const string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach";
+        public LambdaStartSelect_Bituach script1;
+        public LambdaDownloadOneMonth_Bituach script2;
+        public LambdaDownloadBetYears_Bituach script3;
 
 
         //get all the gemel files
@@ -34,7 +34,7 @@ namespace Automation.XNes.Lambda.Runner.Gemel
             //using (IWebDriver driver = new ChromeDriver("Driver_Path", chromeOptions))
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                LambdaStartSelect startRun = new LambdaStartSelect(driver, new LambdaSetting(driver, new LambdaFinder(driver),path));
+                LambdaStartSelect_Bituach startRun = new LambdaStartSelect_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver),path));
 
                 startRun.Run();
             }
@@ -42,7 +42,7 @@ namespace Automation.XNes.Lambda.Runner.Gemel
         }
 
         //get gemel file by month and year
-        public void SelectMonthRun(string month, string year )
+        public void SelectMonthRun(string month, string year , bool isFullDetails)
         {
             Guid guid = Guid.NewGuid();
             string newFolderPath = path + guid.ToString();
@@ -63,13 +63,13 @@ namespace Automation.XNes.Lambda.Runner.Gemel
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
                 //in the new LambdaSetting saving the new path with the new folder
-                script2  = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),month,year, afterFileCreated);
+                script2  = new LambdaDownloadOneMonth_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),month,year,isFullDetails, afterFileCreated);
 
                 script2.Run();
             }
         }
         //get gemel files between the currect years
-        public void SelectYearsRun(string startYear, string endYear)
+        public void SelectYearsRun(string startYear, string endYear, bool isFullDetails)
         {
             Guid guid = Guid.NewGuid();
             string newFolderPath = path + guid.ToString();
@@ -88,7 +88,7 @@ namespace Automation.XNes.Lambda.Runner.Gemel
 
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                script3 = new LambdaDownloadBetYears(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), startYear, endYear, afterFileCreated);
+                script3 = new LambdaDownloadBetYears_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), startYear, endYear, isFullDetails, afterFileCreated);
 
                 script3.Run();
             DirectoryInfo d = new DirectoryInfo(newFolderPath);

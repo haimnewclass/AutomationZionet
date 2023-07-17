@@ -13,11 +13,23 @@ namespace Automation.XNes.Lambda
     {
         public LambdaConfig()
         {
+            //gemel
             base.Params["Year_from"] = "1999";
             base.Params["Year_to"] = "2023";
             base.Params["New_Driver_Path"] = @"C:\projects_excellence\Automation_New\savedFiles\gemel";
             base.Params["Driver_Path"] = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel";
-           
+
+            //bituach
+            base.Params["bituach_Year_from"] = "1999";
+            base.Params["bituach_Year_to"] = "2023";
+            base.Params["bituach_New_Driver_Path"] = @"C:\projects_excellence\Automation_New\savedFiles\bituach";
+            base.Params["bituach_Driver_Path"] = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach";
+
+            //pensia
+            base.Params["pensia_Year_from"] = "1999";
+            base.Params["pensia_Year_to"] = "2023";
+            base.Params["pensia_New_Driver_Path"] = @"C:\projects_excellence\Automation_New\savedFiles\pensia";
+            base.Params["pensia_Driver_Path"] = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia";
         }
 
     }

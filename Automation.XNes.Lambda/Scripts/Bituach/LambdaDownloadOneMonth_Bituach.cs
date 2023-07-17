@@ -11,14 +11,15 @@ using System.IO;
 using AutomationZionet.Base.WebElements;
 using OpenQA.Selenium.Chrome;
 
-namespace Automation.XNes.Lambda.Scripts.Gemel
+namespace Automation.XNes.Lambda.Scripts.Bituach
 {
-    public class LambdaDownloadOneMonth : LambdaScriptBase
+    public class LambdaDownloadOneMonth_Bituach : LambdaScriptBase
     {
         public LambdaSetting setting { get; set; }
         public IWebDriver driver { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+        public bool isFullDetails { get; set; }
         public string newFolderPath { get; set; }
         protected FileSystemWatcher watcher;
         public static int currect = 0;
@@ -26,13 +27,14 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
 
         FileSystemEventHandler fileSystemEventHandler;
 
-        public LambdaDownloadOneMonth(IWebDriver d, LambdaSetting s, string month, string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
+        public LambdaDownloadOneMonth_Bituach(IWebDriver d, LambdaSetting s, string month, string year, bool isFullDetails, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
         {
             fileSystemEventHandler = afileSystemEventHandler;
             setting = s;
             driver = d;
             this.year = year;
             this.month = month;
+            this.isFullDetails = isFullDetails;
             this.newFolderPath = base.setting.lambdaConfig.Params["DestFolder"];
         }
 
@@ -57,36 +59,31 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
             watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
 
-            GoToUrl("baseGemelUrl");
-            ElementButton.Get(setting, "Btn-knisa").Click();
-            ElementButton.Get(setting, "Select-All-Kupot").Click();
+            GoToUrl("baseBituchUrl");
+            ElementButton.Get(setting, "bituach-Btn-knisa").Click();
+            Wait(1500);
+            ElementButton.Get(setting, "bituach-Select-All-Kupot").Click();
+            Wait(1500);
+
+            ElementButton.Get(setting, "bituach-Btn-Add").Click();
+            Wait(1500);
+
+            ElementButton.Get(setting, "bituach-Btn-Download-Xml").Click();
+            GoToUrl("BituachPopingWindow");
+            string s = driver.Url.ToString();
+            Console.WriteLine(s);
             Thread.Sleep(1000);
-            ElementButton.Get(setting, "Btn-Add").Click();
-            ElementButton.Get(setting, "Btn-Download-Xml").Click();
-            Thread.Sleep(3000);
-            ElementSelect.Get(setting, "Select-one").SelectByValue(month);
-            Thread.Sleep(100);
-            ElementSelect.Get(setting, "Select-two").SelectByValue(year);
-            Thread.Sleep(100);
-            ElementSelect.Get(setting, "Select-three").SelectByValue(month);
-            Thread.Sleep(100);
-            ElementSelect.Get(setting, "Select-four").SelectByValue(year);
-            Thread.Sleep(100);
-
-            ElementButton.Get(setting, "Radio-PerutMale").Click();
-            ElementButton.Get(setting, "Btn-Confirm").Click();
-
-            Thread.Sleep(2000);
-            string monthYear = base.setting.lambdaConfig.Params["Year"].ToString() + base.setting.lambdaConfig.Params["Month"].ToString();
-            string erorrPage = @"https://gemelnet.cma.gov.il/tsuot/ui/tsuotHodXML.aspx?miTkfDivuach=" + monthYear + "&adTkfDivuach=" + monthYear + "&kupot=0000&Dochot=1";
-            string currecturl = driver.Url.Substring(0, driver.Url.Length - 6);
-
-            if (erorrPage == currecturl)
+            Wait(1000);
+            ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
+            ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+            ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
+            ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            if (isFullDetails)
             {
-                undownloadfiles[currect++] = monthYear;
-                watcher.Changed -= fileSystemEventHandler;
+                ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
             }
-
+            ElementButton.Get(setting, "bituach-Btn-Confirm").Click();
+            Thread.Sleep(5000);
 
             return base.State;
         }
@@ -104,13 +101,13 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
                 if (infos.Length == 1)
                 {
                     Thread.Sleep(1500);
-                    infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                    infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "BITUACH " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
 
                 }
                 else if (infos.Length == 0)
                 {
                     Thread.Sleep(1500);
-                    LambdaDownloadOneMonth lambda = new LambdaDownloadOneMonth(this.driver, this.setting, this.month, this.year, this.fileSystemEventHandler);
+                    LambdaDownloadOneMonth_Bituach lambda = new LambdaDownloadOneMonth_Bituach(this.driver, this.setting, this.month, this.year, this.isFullDetails, this.fileSystemEventHandler);
                     lambda.Run();
                 }
                 else if (infos.Length > 1)
@@ -129,6 +126,7 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
                 infos = null;
 
             }
+ 
 
         }
 

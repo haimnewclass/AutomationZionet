@@ -10,14 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceProcess;
 using System.ServiceProcess;
-using Automation.XNes.Lambda.Scripts.Gemel;
+using Automation.XNes.Lambda.Scripts.Bituach;
 
-namespace Automation.XNes.Lambda.Runner.Gemel
+namespace Automation.XNes.Lambda.Runner.Bituach
 {
-    public class SingleRunner : RunnerBase
+    public class SingleRunner_Bituach: RunnerBase
     {
-        public LambdaDownloadOneMonth l1;
-        public void Run( string pathDest,string month,string year)
+        public LambdaDownloadOneMonth_Bituach l1;
+        public void Run( string pathDest,string month,string year, bool isFullDetail)
         {
 
             ChromeOptions options = new ChromeOptions();
@@ -47,7 +47,7 @@ namespace Automation.XNes.Lambda.Runner.Gemel
 
             using (IWebDriver driver = cd /*ChromeDriverBase.Get(chromeOptions).ChromeDriver*/)
             {
-                l1 = new LambdaDownloadOneMonth(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), month, year, afterFileCreated);
+                l1 = new LambdaDownloadOneMonth_Bituach(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), month, year, isFullDetail, afterFileCreated);
 
                 l1.Run();
 

@@ -1,5 +1,4 @@
-﻿using Automation.XNes.Lambda.Runner.Gemel;
-using AutomationZionet.Base.Driver;
+﻿using AutomationZionet.Base.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -9,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Automation.XNes.Lambda
+namespace Automation.XNes.Lambda.Runner.Bituach
 {
-    public class PensiaRunAll
+    public class LambdaRunAll_Bituach
     {
-        public LambdaFullDownload_Gemel_All l1;
-        public void Run(string pathDest)
+        public LambdaFullDownload_Bituach_All l1;
+        public void Run(string pathDest, bool isFullDetails)
         {
             string path = pathDest;
             Guid guid = Guid.NewGuid();
@@ -34,7 +33,7 @@ namespace Automation.XNes.Lambda
 
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
-                l1 = new LambdaFullDownload_Gemel_All(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),newFolderPath);
+                l1 = new LambdaFullDownload_Bituach_All(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), isFullDetails,newFolderPath);
 
                 l1.Run();
 
