@@ -104,7 +104,52 @@ namespace Automation.XNes.Lambda.Scripts.Pensia
                 if (infos.Length == 1)
                 {
                     Thread.Sleep(1500);
-                    infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+
+                    string newMonth = "";
+
+                    switch (base.setting.lambdaConfig.Params["Month"])
+                    {
+                        case "ינואר":
+                            newMonth = "01";
+                            break;
+                        case "פברואר":
+                            newMonth = "02";
+                            break;
+                        case "מרץ":
+                            newMonth = "03";
+                            break;
+                        case "אפריל":
+                            newMonth = "04";
+                            break;
+                        case "מאי":
+                            newMonth = "05";
+                            break;
+                        case "יוני":
+                            newMonth = "06";
+                            break;
+                        case "יולי":
+                            newMonth = "07";
+                            break;
+                        case "אוגוסט":
+                            newMonth = "08";
+                            break;
+                        case "ספטמבר":
+                            newMonth = "09";
+                            break;
+                        case "אוקטובר":
+                            newMonth = "10";
+                            break;
+                        case "נובמבר":
+                            newMonth = "11";
+                            break;
+                        case "דצמבר":
+                            newMonth = "12";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
 
                 }
                 else if (infos.Length == 0)
