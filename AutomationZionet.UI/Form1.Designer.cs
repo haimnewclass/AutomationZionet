@@ -44,6 +44,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -164,7 +165,7 @@
             // 
             this.button6.Location = new System.Drawing.Point(21, 72);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(214, 29);
+            this.button6.Size = new System.Drawing.Size(214, 37);
             this.button6.TabIndex = 13;
             this.button6.Text = "gemel - full download";
             this.button6.UseVisualStyleBackColor = true;
@@ -174,7 +175,7 @@
             // 
             this.button7.Location = new System.Drawing.Point(21, 25);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(214, 29);
+            this.button7.Size = new System.Drawing.Size(214, 41);
             this.button7.TabIndex = 14;
             this.button7.Text = "bituch - full download";
             this.button7.UseVisualStyleBackColor = true;
@@ -182,20 +183,31 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(21, 125);
+            this.button8.Location = new System.Drawing.Point(21, 117);
             this.button8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(214, 29);
+            this.button8.Size = new System.Drawing.Size(214, 37);
             this.button8.TabIndex = 15;
             this.button8.Text = "pensia - full download";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(21, 225);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(214, 35);
+            this.button9.TabIndex = 16;
+            this.button9.Text = "pensia - one month";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 563);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -238,6 +250,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 

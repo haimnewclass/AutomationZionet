@@ -44,7 +44,7 @@ namespace Automation.XNes.Lambda.Runner.Pensia
         }
 
         //get gemel file by month and year
-        public void SelectMonthRun(string month, string year , bool isFullDetails)
+        public void SelectMonthRun(string monthInHebrews, string year , bool isFullDetails)
         {
             Guid guid = Guid.NewGuid();
             string newFolderPath = path + guid.ToString();
@@ -65,7 +65,7 @@ namespace Automation.XNes.Lambda.Runner.Pensia
             using (IWebDriver driver = ChromeDriverBase.Get(chromeOptions).ChromeDriver)
             {
                 //in the new LambdaSetting saving the new path with the new folder
-                script2  = new LambdaDownloadOneMonth_Pensia(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath),month,year,isFullDetails, afterFileCreated);
+                script2  = new LambdaDownloadOneMonth_Pensia(driver, new LambdaSetting(driver, new LambdaFinder(driver), newFolderPath), monthInHebrews, year,isFullDetails, afterFileCreated);
 
                 script2.Run();
             }

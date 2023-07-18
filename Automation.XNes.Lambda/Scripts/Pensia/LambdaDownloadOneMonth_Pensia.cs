@@ -149,7 +149,15 @@ namespace Automation.XNes.Lambda.Scripts.Pensia
                             break;
                     }
 
-                    infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
+                    if (bool.Parse(base.setting.lambdaConfig["IsFullDetails"]))
+                    {
+                        infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
+                    }
+                    else
+                    {
+                        infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
+                    }
+
 
                 }
                 else if (infos.Length == 0)

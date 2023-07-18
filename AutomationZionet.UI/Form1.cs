@@ -101,5 +101,11 @@ namespace AutomationZionet.UI
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
             l1.Run(path, true);
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            LambdaRunner_Pensia lambdaRunner_Pensia = new LambdaRunner_Pensia();
+            lambdaRunner_Pensia.SelectMonthRun("מרץ", "2001", true);
+        }
     }
 }
