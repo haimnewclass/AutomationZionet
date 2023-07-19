@@ -90,6 +90,7 @@ namespace AutomationZionet.UI
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll l1 =new LambdaRunAll();
             l1.Run(path, true);
+            l1.Run(path, false);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -97,6 +98,7 @@ namespace AutomationZionet.UI
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
             LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
             l1.Run(path, true);
+            l1.Run(path, false);
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -104,6 +106,7 @@ namespace AutomationZionet.UI
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
             l1.Run(path, true);
+            l1.Run(path, false);
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -111,6 +114,7 @@ namespace AutomationZionet.UI
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
             l1.RunOneMonth(3, 2014, path, true);
+            l1.RunOneMonth(2, 2013, path, false);
 
         }
 
@@ -119,14 +123,15 @@ namespace AutomationZionet.UI
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
             LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
             l1.RunOneMonth(3, 2014, path, true);
+            l1.RunOneMonth(2, 2013, path, false);
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll l1 = new LambdaRunAll();
-            l1.RunOneMonth(3, 2014, path, false);
             l1.RunOneMonth(3, 2014, path, true);
+            l1.RunOneMonth(2, 2013, path, false);
         }
     }
 }
