@@ -100,7 +100,15 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
                 if (infos.Length == 1)
                 {
                     Thread.Sleep(1500);
-                    infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+
+                    if (bool.Parse(base.setting.lambdaConfig["IsFullDetails"]))
+                    {
+                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                    }
+                    else
+                    {
+                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                    }                    
 
                 }
                 else if (infos.Length == 0)

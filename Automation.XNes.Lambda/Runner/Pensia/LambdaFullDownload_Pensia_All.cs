@@ -19,16 +19,18 @@ namespace Automation.XNes.Lambda.Runner.Pensia
         LambdaFullDownload_Pensia lambdaFullDownload_Pensia;
         IWebDriver WebDriver;
         bool IsRunning = false;
+        bool isFullDetails;
         public LambdaFullDownload_Pensia_All(IWebDriver webDriver, LambdaSetting s, bool isFullDetails, string newFolderPath) : base(webDriver, s)
         {
             base.setting = s;
             WebDriver = webDriver;
             base.setting.lambdaConfig["DestFolder"] = newFolderPath;
-            base.setting.lambdaConfig["IsFullDetails"] = isFullDetails.ToString();
+            this.isFullDetails = isFullDetails;
         }
         public override ScriptState Run()
         {
             ret = ScriptState.Started;
+            base.setting.lambdaConfig["IsFullDetails"] = isFullDetails.ToString();
             for (int j = 1999; j < 2023; j++)
             {
 
@@ -108,6 +110,77 @@ namespace Automation.XNes.Lambda.Runner.Pensia
             IsRunning = false;
 
 
+        }
+
+
+
+        public ScriptState RunOneMonth(int month, int year)
+        {
+            ret = ScriptState.Started;
+            base.setting.lambdaConfig["IsFullDetails"] = isFullDetails.ToString();
+               
+            Thread.Sleep(1500);
+
+            //if (j == 0 && i == 0)
+            //{
+            //    continue;
+            //}
+
+            switch (month)
+            {
+                case 1:
+                    base.setting.lambdaConfig["Month"] = "ינואר";
+                    break;
+                case 2:
+                    base.setting.lambdaConfig["Month"] = "פברואר";
+                    break;
+                case 3:
+                    base.setting.lambdaConfig["Month"] = "מרץ";
+                    break;
+                case 4:
+                    base.setting.lambdaConfig["Month"] = "אפריל";
+                    break;
+                case 5:
+                    base.setting.lambdaConfig["Month"] = "מאי";
+                    break;
+                case 6:
+                    base.setting.lambdaConfig["Month"] = "יוני";
+                    break;
+                case 7:
+                    base.setting.lambdaConfig["Month"] = "יולי";
+                    break;
+                case 8:
+                    base.setting.lambdaConfig["Month"] = "אוגוסט";
+                    break;
+                case 9:
+                    base.setting.lambdaConfig["Month"] = "ספטמבר";
+                    break;
+                case 10:
+                    base.setting.lambdaConfig["Month"] = "אוקטובר";
+                    break;
+                case 11:
+                    base.setting.lambdaConfig["Month"] = "נובמבר";
+                    break;
+                case 12:
+                    base.setting.lambdaConfig["Month"] = "דצמבר";
+                    break;
+                default:
+                    break;
+            }
+
+
+            base.setting.lambdaConfig["Year"] = year.ToString();
+
+            lambdaFullDownload_Pensia = new LambdaFullDownload_Pensia(WebDriver, base.setting, this.afterFileCreated);
+            IsRunning = true;
+            lambdaFullDownload_Pensia.Run();
+            //whie IsRunning == true do nothing
+            while (IsRunning == true)
+            {
+                System.Threading.Thread.Sleep(100);
+            }            
+
+            return ret;
         }
     }
 }

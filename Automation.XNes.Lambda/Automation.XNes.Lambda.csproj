@@ -173,7 +173,6 @@
     <Compile Include="Scripts\Gemel\LambdaStartSelect.cs" />
     <Compile Include="LambdaFinder.cs" />
     <Compile Include="LambdaScriptBase.cs" />
-    <Compile Include="Scripts\PensiaDownloadOneMonth.cs" />
     <Compile Include="LambdaUrls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Pensia\LambdaDownloadBetYears_Pensia.cs" />

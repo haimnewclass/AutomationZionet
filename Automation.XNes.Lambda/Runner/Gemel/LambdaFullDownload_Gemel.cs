@@ -34,8 +34,7 @@ namespace Automation.XNes.Lambda.Runner.Gemel
         {
             ret = ScriptState.Started;
 
-            lambdaDownloadOneMonth = new LambdaDownloadOneMonth(WebDriver, base.setting,setting.lambdaConfig["Month"], setting.lambdaConfig["Year"], this.afterFileCreated);
-            //base.setting.lambdaConfig["DestFolder"]= @"C:\Users\user\learning\xnesLearning\xnes_react\AutomationZionet\DownloadFiles";
+            lambdaDownloadOneMonth = new LambdaDownloadOneMonth(WebDriver, base.setting,setting.lambdaConfig["Month"], setting.lambdaConfig["Year"], bool.Parse(setting.lambdaConfig["IsFullDetails"]), this.afterFileCreated);
             lambdaDownloadOneMonth.Run();
 
             return ret;

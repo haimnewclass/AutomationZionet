@@ -18,16 +18,18 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
         public IWebDriver driver { get; set; }
         public int startYear { get; set; }
         public int endYear { get; set; }
+        public bool isFullDetail { get; set; }
 
         public FileSystemEventHandler fileSystemEventHandler;
         public LambdaDownloadOneMonth oneMonth { get; set; }
-        public LambdaDownloadBetYears(IWebDriver d, LambdaSetting s, string startYear, string endYear, FileSystemEventHandler fileSystemEventHandler) : base(d, s)
+        public LambdaDownloadBetYears(IWebDriver d, LambdaSetting s, string startYear, string endYear, bool isFullDetail, FileSystemEventHandler fileSystemEventHandler) : base(d, s)
         {
             setting = s;
             driver = d;
             this.startYear = int.Parse(startYear);
             this.endYear = int.Parse(endYear);
             this.fileSystemEventHandler= fileSystemEventHandler;    
+            this.isFullDetail = isFullDetail;
         }
 
         public override ScriptState Run()
@@ -42,7 +44,7 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
                     else
                          strMonth = j.ToString();
 
-                    oneMonth = new LambdaDownloadOneMonth(driver, setting,strMonth, i.ToString(), fileSystemEventHandler);
+                    oneMonth = new LambdaDownloadOneMonth(driver, setting,strMonth, i.ToString(), isFullDetail, fileSystemEventHandler);
 
                     oneMonth.Run();
                 }

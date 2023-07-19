@@ -39,7 +39,7 @@ namespace AutomationZionet.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LambdaRunner.startRun();  
+            //LambdaRunner.startRun();  
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,20 +49,20 @@ namespace AutomationZionet.UI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LambdaRunner l = new LambdaRunner();
-            string  month="", year="";
-            month=textBox1.Text;
-            year=textBox2.Text;
-            l.SelectMonthRun(month,year);
+            //LambdaRunner l = new LambdaRunner();
+            //string  month="", year="";
+            //month=textBox1.Text;
+            //year=textBox2.Text;
+            //l.SelectMonthRun(month,year);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            LambdaRunner l = new LambdaRunner();
-            string startYear = "", endYear = "";
-            startYear = textBox3.Text;
-            endYear = textBox4.Text;
-            l.SelectYearsRun(startYear, endYear);
+            //LambdaRunner l = new LambdaRunner();
+            //string startYear = "", endYear = "";
+            //startYear = textBox3.Text;
+            //endYear = textBox4.Text;
+            //l.SelectYearsRun(startYear, endYear);
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -71,21 +71,25 @@ namespace AutomationZionet.UI
         }
         private void button5_Click(object sender, EventArgs e)
         {
-           string path = @"C:\projects_excellence\Automation2\";
+          // string path = @"C:\projects_excellence\Automation2\";
 
-          SingleRunner s1 = new SingleRunner(); 
-            s1.Run(path, "01", "2001");
+          //SingleRunner s1 = new SingleRunner(); 
+          //  s1.Run(path, "01", "2001");
         }
         public void afterFileCreated(object sender, FileSystemEventArgs e)
         {
-            l1.CopyCompleatedFileToTargetFolder();
+            //l1.CopyCompleatedFileToTargetFolder();
         }
 
+
+
+
+        //-----------------------------------------------------------------------------------------------------------------------------------
         private void button6_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll l1 =new LambdaRunAll();
-            l1.Run(path);
+            l1.Run(path, true);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -103,9 +107,26 @@ namespace AutomationZionet.UI
         }
 
         private void button9_Click(object sender, EventArgs e)
+        { 
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
+            LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
+            l1.RunOneMonth(3, 2014, path, true);
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
         {
-            LambdaRunner_Pensia lambdaRunner_Pensia = new LambdaRunner_Pensia();
-            lambdaRunner_Pensia.SelectMonthRun("מרץ", "2001", true);
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
+            LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
+            l1.RunOneMonth(3, 2014, path, true);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
+            LambdaRunAll l1 = new LambdaRunAll();
+            l1.RunOneMonth(3, 2014, path, false);
+            l1.RunOneMonth(3, 2014, path, true);
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
         public IWebDriver driver { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+        public bool isFullDetails { get; set; }
         public string newFolderPath { get; set; }
         protected FileSystemWatcher watcher;
         public static int currect = 0;
@@ -26,13 +27,14 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
 
         FileSystemEventHandler fileSystemEventHandler;
 
-        public LambdaDownloadOneMonth(IWebDriver d, LambdaSetting s, string month, string year, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
+        public LambdaDownloadOneMonth(IWebDriver d, LambdaSetting s, string month, string year, bool isFullDetails, FileSystemEventHandler afileSystemEventHandler) : base(d, s)
         {
             fileSystemEventHandler = afileSystemEventHandler;
             setting = s;
             driver = d;
             this.year = year;
             this.month = month;
+            this.isFullDetails = isFullDetails;
             this.newFolderPath = base.setting.lambdaConfig.Params["DestFolder"];
         }
 
@@ -72,8 +74,10 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
             Thread.Sleep(100);
             ElementSelect.Get(setting, "Select-four").SelectByValue(year);
             Thread.Sleep(100);
-
-            ElementButton.Get(setting, "Radio-PerutMale").Click();
+            if (isFullDetails)
+            {
+                ElementButton.Get(setting, "Radio-PerutMale").Click();
+            }
             ElementButton.Get(setting, "Btn-Confirm").Click();
 
             Thread.Sleep(2000);
@@ -104,13 +108,21 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
                 if (infos.Length == 1)
                 {
                     Thread.Sleep(1500);
-                    infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+
+                    if (bool.Parse(base.setting.lambdaConfig["IsFullDetails"]))
+                    {
+                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                    }
+                    else
+                    {
+                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                    }
 
                 }
                 else if (infos.Length == 0)
                 {
                     Thread.Sleep(1500);
-                    LambdaDownloadOneMonth lambda = new LambdaDownloadOneMonth(this.driver, this.setting, this.month, this.year, this.fileSystemEventHandler);
+                    LambdaDownloadOneMonth lambda = new LambdaDownloadOneMonth(this.driver, this.setting, this.month, this.year, this.isFullDetails, this.fileSystemEventHandler);
                     lambda.Run();
                 }
                 else if (infos.Length > 1)

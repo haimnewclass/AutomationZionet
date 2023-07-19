@@ -9,6 +9,7 @@ using OpenQA.Selenium;
 using AutomationZionet.Base.Scripts;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
+using Automation.XNes.Lambda.Runner.Pensia;
 
 namespace Automation.XNes.Lambda.Runner.Bituach
 {
@@ -69,6 +70,37 @@ namespace Automation.XNes.Lambda.Runner.Bituach
             IsRunning = false;
 
 
+        }
+
+
+        public ScriptState RunOneMonth(int month, int year)
+        {
+            ret = ScriptState.Started;
+           
+            Thread.Sleep(1500);
+
+            //if (j == 0 && i == 0)
+            //{
+            //    continue;
+            //}
+
+            if (month < 10)
+                base.setting.lambdaConfig["Month"] = month.ToString();
+            else
+                base.setting.lambdaConfig["Month"] = month.ToString();
+
+            base.setting.lambdaConfig["Year"] = year.ToString();
+
+            lambdaFullDownload_Bituach = new LambdaFullDownload_Bituach(WebDriver, base.setting, this.afterFileCreated);
+            IsRunning = true;
+            lambdaFullDownload_Bituach.Run();
+            //whie IsRunning == true do nothing
+            while (IsRunning == true)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+
+            return ret;
         }
     }
 }
