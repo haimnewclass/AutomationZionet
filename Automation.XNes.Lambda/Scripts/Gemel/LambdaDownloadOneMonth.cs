@@ -19,6 +19,8 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
         public IWebDriver driver { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+        public string monthStart { get; set; } = "1";
+        public string monthEnd { get; set; } = "12";
         public bool isFullDetails { get; set; }
         public string newFolderPath { get; set; }
         protected FileSystemWatcher watcher;
@@ -66,14 +68,29 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
             ElementButton.Get(setting, "Btn-Add").Click();
             ElementButton.Get(setting, "Btn-Download-Xml").Click();
             Thread.Sleep(3000);
-            ElementSelect.Get(setting, "Select-one").SelectByValue(month);
-            Thread.Sleep(100);
-            ElementSelect.Get(setting, "Select-two").SelectByValue(year);
-            Thread.Sleep(100);
-            ElementSelect.Get(setting, "Select-three").SelectByValue(month);
-            Thread.Sleep(100);
-            ElementSelect.Get(setting, "Select-four").SelectByValue(year);
-            Thread.Sleep(100);
+            if (isFullDetails)
+            {
+                ElementSelect.Get(setting, "Select-one").SelectByValue(month);
+                Thread.Sleep(100);
+                ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+                Thread.Sleep(100);
+                ElementSelect.Get(setting, "Select-three").SelectByValue(month);
+                Thread.Sleep(100);
+                ElementSelect.Get(setting, "Select-four").SelectByValue(year);
+                Thread.Sleep(100);
+            }
+            else
+            {
+                ElementSelect.Get(setting, "Select-one").SelectByValue(monthStart);
+                Thread.Sleep(100);
+                ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+                Thread.Sleep(100);
+                ElementSelect.Get(setting, "Select-three").SelectByValue(monthEnd);
+                Thread.Sleep(100);
+                ElementSelect.Get(setting, "Select-four").SelectByValue(year);
+                Thread.Sleep(100);
+            }
+           
             if (isFullDetails)
             {
                 ElementButton.Get(setting, "Radio-PerutMale").Click();

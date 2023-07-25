@@ -29,7 +29,7 @@ namespace Automation.XNes.Lambda.Runner.Bituach
         public override ScriptState Run()
         {
             ret = ScriptState.Started;
-            for (int j = 1999; j < 2023; j++)
+            for (int j = 2003; j < 2023; j++)
             {
 
                 for (int i = 1; i < 13; i++)
