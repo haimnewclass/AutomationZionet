@@ -195,6 +195,7 @@ namespace Automation.XNes.Lambda.Runner.Pensia
 
                 base.setting.lambdaConfig["Month"] = "0"; //will be set later in the program
                 base.setting.lambdaConfig["Year"] = j.ToString();
+                base.setting.lambdaConfig["IsFullDetails"] = isFullDetails.ToString();
 
                 lambdaFullDownload_Pensia = new LambdaFullDownload_Pensia(WebDriver, base.setting, this.afterFileCreated);
                 IsRunning = true;
