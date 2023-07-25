@@ -19,7 +19,7 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
         public IWebDriver driver { get; set; }
         public string year { get; set; }
         public string month { get; set; }
-        public string monthStart { get; set; } = "1";
+        public string monthStart { get; set; } = "01";
         public string monthEnd { get; set; } = "12";
         public bool isFullDetails { get; set; }
         public string newFolderPath { get; set; }
@@ -132,7 +132,7 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
                     }
                     else
                     {
-                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["New_Driver_Path_Chevrot"] + "\\" + "GEMEL_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString().ToString() + ".xml");
                     }
 
                 }

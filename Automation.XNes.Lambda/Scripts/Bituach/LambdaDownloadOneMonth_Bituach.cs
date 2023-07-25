@@ -19,6 +19,8 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
         public IWebDriver driver { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+        public string monthStart { get; set; } = "1";
+        public string monthEnd { get; set; } = "12";
         public bool isFullDetails { get; set; }
         public string newFolderPath { get; set; }
         protected FileSystemWatcher watcher;
@@ -73,10 +75,21 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
             Console.WriteLine(s);
             Thread.Sleep(1000);
             Wait(1000);
-            ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
-            ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
-            ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
-            ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            if (isFullDetails)
+            {
+                ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
+                ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+                ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
+                ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            }
+            else
+            {
+                ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(monthStart);
+                ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+                ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(monthEnd);
+                ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            }
+
             if (isFullDetails)
             {
                 ElementButton.Get(setting, "bituach-Radio-PerutMale").Click();
@@ -107,7 +120,7 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
                     }
                     else
                     {
-                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path_Chevrot"] + "\\" + "BITUACH_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString().ToString() + ".xml");
                     }                    
 
                 }

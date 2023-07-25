@@ -10,6 +10,7 @@ using AutomationZionet.Base.Scripts;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using System.Linq.Expressions;
+using Automation.XNes.Lambda.Runner.Bituach;
 
 namespace Automation.XNes.Lambda.Runner.Pensia
 {
@@ -179,6 +180,34 @@ namespace Automation.XNes.Lambda.Runner.Pensia
             {
                 System.Threading.Thread.Sleep(100);
             }            
+
+            return ret;
+        }
+
+
+        public ScriptState RunChevrot()
+        {
+            ret = ScriptState.Started;
+            for (int j = 1999; j < 2023; j++)
+            {
+
+                Thread.Sleep(1500);
+
+                base.setting.lambdaConfig["Month"] = "0"; //will be set later in the program
+                base.setting.lambdaConfig["Year"] = j.ToString();
+
+                lambdaFullDownload_Pensia = new LambdaFullDownload_Pensia(WebDriver, base.setting, this.afterFileCreated);
+                IsRunning = true;
+                lambdaFullDownload_Pensia.Run();
+                //whie IsRunning == true do nothing
+                while (IsRunning == true)
+                {
+                    System.Threading.Thread.Sleep(100);
+                }
+
+                //TODO: change to two minutes (1000*60*2)
+                System.Threading.Thread.Sleep(1000 * 10);
+            }
 
             return ret;
         }

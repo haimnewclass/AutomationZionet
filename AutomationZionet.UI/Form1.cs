@@ -89,8 +89,7 @@ namespace AutomationZionet.UI
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll l1 =new LambdaRunAll();
-            //l1.Run(path, true);
-            path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemelChevrot\";
+            l1.Run(path, true);
             l1.RunChevrot(path, false);
         }
 
@@ -99,15 +98,15 @@ namespace AutomationZionet.UI
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
             LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
             //l1.Run(path, true);
-            l1.Run(path, false);
+            l1.RunChevrot(path, false);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
-            l1.Run(path, true);
-            l1.Run(path, false);
+            //l1.Run(path, true);
+            l1.RunChevrot(path, false);
         }
 
         private void button9_Click(object sender, EventArgs e)

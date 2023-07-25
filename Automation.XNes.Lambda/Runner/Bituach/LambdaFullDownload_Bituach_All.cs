@@ -10,6 +10,7 @@ using AutomationZionet.Base.Scripts;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using Automation.XNes.Lambda.Runner.Pensia;
+using Automation.XNes.Lambda.Runner.Gemel;
 
 namespace Automation.XNes.Lambda.Runner.Bituach
 {
@@ -64,12 +65,31 @@ namespace Automation.XNes.Lambda.Runner.Bituach
             return ret;
         }
 
-
-        public void afterFileCreated(object sender, FileSystemEventArgs e)
+        public ScriptState RunChevrot()
         {
-            IsRunning = false;
+            ret = ScriptState.Started;
+            for (int j = 1999; j < 2023; j++)
+            {
 
+                Thread.Sleep(1500);
 
+                base.setting.lambdaConfig["Month"] = "0"; //will be set later in the program
+                base.setting.lambdaConfig["Year"] = j.ToString();
+
+                lambdaFullDownload_Bituach = new LambdaFullDownload_Bituach(WebDriver, base.setting, this.afterFileCreated);
+                IsRunning = true;
+                lambdaFullDownload_Bituach.Run();
+                //whie IsRunning == true do nothing
+                while (IsRunning == true)
+                {
+                    System.Threading.Thread.Sleep(100);
+                }
+
+                //TODO: change to two minutes (1000*60*2)
+                System.Threading.Thread.Sleep(1000 * 10);
+            }
+
+            return ret;
         }
 
 
@@ -102,5 +122,14 @@ namespace Automation.XNes.Lambda.Runner.Bituach
 
             return ret;
         }
+
+
+        public void afterFileCreated(object sender, FileSystemEventArgs e)
+        {
+            IsRunning = false;
+
+
+        }
+
     }
 }
