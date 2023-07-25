@@ -188,7 +188,7 @@ namespace Automation.XNes.Lambda.Runner.Pensia
         public ScriptState RunChevrot()
         {
             ret = ScriptState.Started;
-            for (int j = 1999; j < 2023; j++)
+            for (int j = 2012; j < 2023; j++)
             {
 
                 Thread.Sleep(1500);
