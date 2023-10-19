@@ -75,20 +75,40 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
             Console.WriteLine(s);
             Thread.Sleep(1000);
             Wait(1000);
-            if (isFullDetails)
-            {
-                ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
-                ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
-                ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
-                ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
-            }
-            else
-            {
+            if (month == "0")
                 ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(monthStart);
-                ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
-                ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(monthEnd);
-                ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
-            }
+            else
+                ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
+
+            ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+            if (month == "0")
+                ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(monthStart);
+            else
+                ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
+
+            ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            //if (isFullDetails)
+            //{
+            //    if(month=="0")
+            //        ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(monthStart);
+            //    else 
+            //    ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(month);
+
+            //    ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+            //    if (month == "0")
+            //        ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(monthStart);
+            //    else
+            //        ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(month);
+
+            //    ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            //}
+            //else
+            //{
+            //    ElementSelect.Get(setting, "bituach-Select-From-Month").SelectByValue(monthStart);
+            //    ElementSelect.Get(setting, "bituach-Select-From-Year").SelectByValue(year);
+            //    ElementSelect.Get(setting, "bituach-Select-Until-Month").SelectByValue(monthEnd);
+            //    ElementSelect.Get(setting, "bituach-Select-Until-Year").SelectByValue(year);
+            //}
 
             if (isFullDetails)
             {
@@ -116,11 +136,11 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
 
                     if (bool.Parse(base.setting.lambdaConfig["IsFullDetails"]))
                     {
-                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH__FullDetails " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
                     }
                     else
                     {
-                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path_Chevrot"] + "\\" + "BITUACH_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString().ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["bituach_New_Driver_Path"] + "\\" + "BITUACH_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString().ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
                     }                    
 
                 }
@@ -144,7 +164,8 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
             finally
             {
                 infos = null;
-
+                if (base.setting.lambdaConfig["IsRunningAll"] != null)
+                    base.setting.lambdaConfig["IsRunningAll"] = "false";
             }
  
 

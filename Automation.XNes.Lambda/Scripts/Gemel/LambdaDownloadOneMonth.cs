@@ -68,29 +68,37 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
             ElementButton.Get(setting, "Btn-Add").Click();
             ElementButton.Get(setting, "Btn-Download-Xml").Click();
             Thread.Sleep(3000);
-            if (isFullDetails)
-            {
-                ElementSelect.Get(setting, "Select-one").SelectByValue(month);
-                Thread.Sleep(100);
-                ElementSelect.Get(setting, "Select-two").SelectByValue(year);
-                Thread.Sleep(100);
-                ElementSelect.Get(setting, "Select-three").SelectByValue(month);
-                Thread.Sleep(100);
-                ElementSelect.Get(setting, "Select-four").SelectByValue(year);
-                Thread.Sleep(100);
-            }
-            else
-            {
-                ElementSelect.Get(setting, "Select-one").SelectByValue(monthStart);
-                Thread.Sleep(100);
-                ElementSelect.Get(setting, "Select-two").SelectByValue(year);
-                Thread.Sleep(100);
-                ElementSelect.Get(setting, "Select-three").SelectByValue(monthEnd);
-                Thread.Sleep(100);
-                ElementSelect.Get(setting, "Select-four").SelectByValue(year);
-                Thread.Sleep(100);
-            }
-           
+            ElementSelect.Get(setting, "Select-one").SelectByValue(month);
+            Thread.Sleep(100);
+            ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+            Thread.Sleep(100);
+            ElementSelect.Get(setting, "Select-three").SelectByValue(month);
+            Thread.Sleep(100);
+            ElementSelect.Get(setting, "Select-four").SelectByValue(year);
+            Thread.Sleep(100);
+            //if (isFullDetails)
+            //{
+            //    ElementSelect.Get(setting, "Select-one").SelectByValue(month);
+            //    Thread.Sleep(100);
+            //    ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+            //    Thread.Sleep(100);
+            //    ElementSelect.Get(setting, "Select-three").SelectByValue(month);
+            //    Thread.Sleep(100);
+            //    ElementSelect.Get(setting, "Select-four").SelectByValue(year);
+            //    Thread.Sleep(100);
+            //}
+            //else
+            //{
+            //    ElementSelect.Get(setting, "Select-one").SelectByValue(monthStart);
+            //    Thread.Sleep(100);
+            //    ElementSelect.Get(setting, "Select-two").SelectByValue(year);
+            //    Thread.Sleep(100);
+            //    ElementSelect.Get(setting, "Select-three").SelectByValue(monthEnd);
+            //    Thread.Sleep(100);
+            //    ElementSelect.Get(setting, "Select-four").SelectByValue(year);
+            //    Thread.Sleep(100);
+            //}
+
             if (isFullDetails)
             {
                 ElementButton.Get(setting, "Radio-PerutMale").Click();
@@ -99,15 +107,16 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
 
             Thread.Sleep(2000);
             string monthYear = base.setting.lambdaConfig.Params["Year"].ToString() + base.setting.lambdaConfig.Params["Month"].ToString();
-            string erorrPage = @"https://gemelnet.cma.gov.il/tsuot/ui/tsuotHodXML.aspx?miTkfDivuach=" + monthYear + "&adTkfDivuach=" + monthYear + "&kupot=0000&Dochot=1";
+            //string erorrPage = @"https://gemelnet.cma.gov.il/tsuot/ui/tsuotHodXML.aspx?miTkfDivuach=" + monthYear + "&adTkfDivuach=" + monthYear + "&kupot=0000&Dochot=1";
             string currecturl = driver.Url.Substring(0, driver.Url.Length - 6);
 
-            if (erorrPage == currecturl)
+            if (true == currecturl.Contains(monthYear))
             {
                 undownloadfiles[currect++] = monthYear;
                 watcher.Changed -= fileSystemEventHandler;
+                base.setting.lambdaConfig["IsRunning"] = "false";
             }
-
+            else;
 
             return base.State;
         }
@@ -128,11 +137,11 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
 
                     if (bool.Parse(base.setting.lambdaConfig["IsFullDetails"]))
                     {
-                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL_FullDetails " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
                     }
                     else
                     {
-                        infos[0].MoveTo(this.Config["New_Driver_Path_Chevrot"] + "\\" + "GEMEL_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString().ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["New_Driver_Path"] + "\\" + "GEMEL_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString().ToString() + "_" + base.setting.lambdaConfig.Params["Month"].ToString() + ".xml");
                     }
 
                 }
@@ -156,7 +165,8 @@ namespace Automation.XNes.Lambda.Scripts.Gemel
             finally
             {
                 infos = null;
-
+                if (base.setting.lambdaConfig["IsRunningAll"] != null)
+                    base.setting.lambdaConfig["IsRunningAll"] = "false";
             }
 
         }

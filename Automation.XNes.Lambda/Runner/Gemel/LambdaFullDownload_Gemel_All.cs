@@ -36,10 +36,10 @@ namespace Automation.XNes.Lambda.Runner.Gemel
                 {
                     Thread.Sleep(1500);
 
-                    if (CheckIfDateExitsInWeb(bool.Parse(base.setting.lambdaConfig["IsFullDetails"]), i, j))
-                    {
-                        continue;
-                    }
+                    //if (CheckIfDateExitsInWeb(bool.Parse(base.setting.lambdaConfig["IsFullDetails"]), i, j))
+                    //{
+                    //    continue;
+                    //}
 
                     if (i < 10)
                         base.setting.lambdaConfig["Month"] = "0" + i.ToString();
@@ -49,9 +49,10 @@ namespace Automation.XNes.Lambda.Runner.Gemel
                     base.setting.lambdaConfig["Year"] = j.ToString();
                     lambdaFullDownload_Gemel = new LambdaFullDownload_Gemel(WebDriver, base.setting, this.afterFileCreated);
                     IsRunning = true;
+                    base.setting.lambdaConfig["IsRunning"] = "true";
                     lambdaFullDownload_Gemel.Run();
                     //whie IsRunning == true do nothing
-                    while (IsRunning == true)
+                    while (base.setting.lambdaConfig["IsRunning"] == "true"&& IsRunning == true)
                     {
                         System.Threading.Thread.Sleep(100);
                     }
@@ -94,7 +95,42 @@ namespace Automation.XNes.Lambda.Runner.Gemel
 
             return ret;
         }
+        public ScriptState RunYears(int startYear,int endYear)
+        {
+            ret = ScriptState.Started;
+            for (int j = startYear; j < endYear; j++)
+            {
 
+                for (int i = 1; i < 13; i++)
+                {
+                    Thread.Sleep(1500);
+
+                    if (CheckIfDateExitsInWeb(bool.Parse(base.setting.lambdaConfig["IsFullDetails"]), i, j))
+                    {
+                        continue;
+                    }
+
+                    if (i < 10)
+                        base.setting.lambdaConfig["Month"] = "0" + i.ToString();
+                    else
+                        base.setting.lambdaConfig["Month"] = i.ToString();
+
+                    base.setting.lambdaConfig["Year"] = j.ToString();
+                    lambdaFullDownload_Gemel = new LambdaFullDownload_Gemel(WebDriver, base.setting, this.afterFileCreated);
+                    IsRunning = true;
+                    lambdaFullDownload_Gemel.Run();
+                    //whie IsRunning == true do nothing
+                    while (IsRunning == true)
+                    {
+                        System.Threading.Thread.Sleep(100);
+                    }
+                }
+                //TODO: change to two minutes (1000*60*2)
+                System.Threading.Thread.Sleep(1000 * 10);
+            }
+
+            return ret;
+        }
         public ScriptState RunChevrot()
         {
             ret = ScriptState.Started;
@@ -164,7 +200,6 @@ namespace Automation.XNes.Lambda.Runner.Gemel
         public void afterFileCreated(object sender, FileSystemEventArgs e)
         {
             IsRunning = false;
-
 
         }
     }

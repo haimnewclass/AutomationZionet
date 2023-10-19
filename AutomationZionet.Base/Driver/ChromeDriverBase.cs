@@ -27,7 +27,8 @@ namespace AutomationZionet.Base.Driver
         public ChromeDriverBase(ChromeOptions achromeOptions)
         {
             chromeOptions = achromeOptions;
-            chromeDriver = new ChromeDriver("Driver_Path", achromeOptions);
+            string DriverPath = @"C:\Users\user\working\xnes\AutomationZionet\packages\Selenium.WebDriver.ChromeDriver.118.0.5993.7000\driver\win32";
+            chromeDriver = new ChromeDriver(/*"Driver_Path"*/DriverPath, achromeOptions);
         }
 
         public static ChromeDriverBase Get(ChromeOptions achromeOptions)

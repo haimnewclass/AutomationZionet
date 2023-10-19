@@ -68,24 +68,31 @@ namespace Automation.XNes.Lambda.Scripts.Pensia
             Thread.Sleep(500);
             ElementButton.Get(setting, "pensia-Btn-All-New-Option").Click();
             Thread.Sleep(500);
-            if (isFullDetails)
-            {
-                driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input")).Clear();
-                ElementInput.Get(setting, "pensia-Input-Select-Start-Date").SendKeys(month + " " + year);
-                Thread.Sleep(500);
-                driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input")).Clear();
-                ElementInput.Get(setting, "pensia-Input-Select-End-Date").SendKeys(month + " " + year);
-                Thread.Sleep(500);
-            }
-            else
-            {
-                driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input")).Clear();
-                ElementInput.Get(setting, "pensia-Input-Select-Start-Date").SendKeys(monthStart + " " + year);
-                Thread.Sleep(500);
-                driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input")).Clear();
-                ElementInput.Get(setting, "pensia-Input-Select-End-Date").SendKeys(monthEnd + " " + year);
-                Thread.Sleep(500);
-            }
+
+            driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input")).Clear();
+            ElementInput.Get(setting, "pensia-Input-Select-Start-Date").SendKeys(month + " " + year);
+            Thread.Sleep(500);
+            driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input")).Clear();
+            ElementInput.Get(setting, "pensia-Input-Select-End-Date").SendKeys(month + " " + year);
+            Thread.Sleep(500);
+            //if (isFullDetails)
+            //{
+            //    driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input")).Clear();
+            //    ElementInput.Get(setting, "pensia-Input-Select-Start-Date").SendKeys(month + " " + year);
+            //    Thread.Sleep(500);
+            //    driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input")).Clear();
+            //    ElementInput.Get(setting, "pensia-Input-Select-End-Date").SendKeys(month + " " + year);
+            //    Thread.Sleep(500);
+            //}
+            //else
+            //{
+            //    driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[1]/span[1]/span/input")).Clear();
+            //    ElementInput.Get(setting, "pensia-Input-Select-Start-Date").SendKeys(monthStart + " " + year);
+            //    Thread.Sleep(500);
+            //    driver.FindElement(By.XPath(@"/html/body/main/section/div/div[2]/div[2]/div/div/div[2]/div[3]/div[1]/div[2]/span[1]/span/input")).Clear();
+            //    ElementInput.Get(setting, "pensia-Input-Select-End-Date").SendKeys(monthEnd + " " + year);
+            //    Thread.Sleep(500);
+            //}
             ElementButton.Get(setting, "pensia-Btn-Download-Xml").Click();
             Thread.Sleep(500);
             if (isFullDetails)
@@ -165,11 +172,11 @@ namespace Automation.XNes.Lambda.Scripts.Pensia
 
                     if (bool.Parse(base.setting.lambdaConfig["IsFullDetails"]))
                     {
-                        infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
+                        infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA_FullDetails " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
                     }
                     else
                     {
-                        infos[0].MoveTo(this.Config["pensia_New_Driver_Path_Chevrot"] + "\\" + "PENSIA_CHEVROT " + base.setting.lambdaConfig.Params["Year"].ToString() + ".xml");
+                        infos[0].MoveTo(this.Config["pensia_New_Driver_Path"] + "\\" + "PENSIA_NETUNIM " + base.setting.lambdaConfig.Params["Year"].ToString() + "_" + newMonth + ".xml");
                     }
 
 
@@ -194,7 +201,8 @@ namespace Automation.XNes.Lambda.Scripts.Pensia
             finally
             {
                 infos = null;
-
+                if (base.setting.lambdaConfig["IsRunningAll"] != null)
+                    base.setting.lambdaConfig["IsRunningAll"] = "false";
             }
  
 

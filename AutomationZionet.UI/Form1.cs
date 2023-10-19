@@ -21,6 +21,7 @@ using Automation.XNes.Lambda.Runner.Bituach;
 using Automation.XNes.Lambda.Scripts.Bituach;
 using Automation.XNes.Lambda.Scripts.Gemel;
 using Automation.XNes.Lambda.Runner.Pensia;
+using Automation.XNes.Lambda.Runner.General;
 
 namespace AutomationZionet.UI
 {
@@ -88,29 +89,35 @@ namespace AutomationZionet.UI
         private void button6_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
-            LambdaRunAll l1 =new LambdaRunAll();
+            LambdaRunAll_Gemel l1 =new LambdaRunAll_Gemel();
+            //download gemel file from all the years and month-פירוט מלא
             l1.Run(path, true);
-            l1.RunChevrot(path, false);
+            //download gemel chevrot files-נתונים כללים
+            l1.Run(path, false);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
             LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
-            //l1.Run(path, true);
-            l1.RunChevrot(path, false);
+            //download bituch file from all the years and month-פירוט מלא
+            l1.Run(path, true);
+            //download bituch chevrot files-נתונים כללים
+            l1.Run(path, false);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
-            //l1.Run(path, true);
-            l1.RunChevrot(path, false);
+            //download pensia file from all the years and month-פירוט מלא
+            l1.Run(path, true);
+            //download pensia chevrot files-נתונים כללים
+            l1.Run(path, false);
         }
 
         private void button9_Click(object sender, EventArgs e)
-        { 
+        {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
             l1.RunOneMonth(3, 2014, path, true);
@@ -129,9 +136,25 @@ namespace AutomationZionet.UI
         private void button11_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
-            LambdaRunAll l1 = new LambdaRunAll();
+            LambdaRunAll_Gemel l1 = new LambdaRunAll_Gemel();
             l1.RunOneMonth(3, 2014, path, true);
             l1.RunOneMonth(2, 2013, path, false);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {   //download one year
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
+            LambdaRunAll_Gemel l1 = new LambdaRunAll_Gemel();
+            l1.RunYears(path, true,2005,2006);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\general\";
+            LambdaRunAllGeneral l1 =new LambdaRunAllGeneral();
+            l1.Run(path, true);
+            l1.Run(path, false);
+
         }
     }
 }

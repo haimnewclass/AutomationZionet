@@ -50,10 +50,11 @@ namespace Automation.XNes.Lambda.Runner.Bituach
                     base.setting.lambdaConfig["Year"] = j.ToString();
                    
                     lambdaFullDownload_Bituach = new LambdaFullDownload_Bituach(WebDriver, base.setting, this.afterFileCreated);
+                    base.setting.lambdaConfig["IsRunning"] = "true";
                     IsRunning = true;
                     lambdaFullDownload_Bituach.Run();
                     //whie IsRunning == true do nothing
-                    while (IsRunning == true)
+                    while (IsRunning == true &&base.setting.lambdaConfig["IsRunning"] == "true")
                     {
                         System.Threading.Thread.Sleep(100);
                     }
@@ -130,6 +131,5 @@ namespace Automation.XNes.Lambda.Runner.Bituach
 
 
         }
-
     }
 }
