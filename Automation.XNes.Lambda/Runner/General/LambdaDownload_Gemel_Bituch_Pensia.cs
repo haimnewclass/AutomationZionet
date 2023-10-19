@@ -35,7 +35,7 @@ namespace Automation.XNes.Lambda.Runner.General
             for (int j = 1999; j < 2023; j++)
             {
 
-                for (int i = 1; i < 5; i++)
+                for (int i = 1; i < 12; i++)
                 {
                     Thread.Sleep(1500);
                     GetMonthForGemel(i);
