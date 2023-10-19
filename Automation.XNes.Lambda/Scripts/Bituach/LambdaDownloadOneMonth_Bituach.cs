@@ -164,7 +164,7 @@ namespace Automation.XNes.Lambda.Scripts.Bituach
             finally
             {
                 infos = null;
-                if (base.setting.lambdaConfig["IsRunningAll"] != null)
+                if (base.setting.lambdaConfig["IsRunningAll"] != "0")
                     base.setting.lambdaConfig["IsRunningAll"] = "false";
             }
  

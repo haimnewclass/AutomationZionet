@@ -120,8 +120,8 @@ namespace AutomationZionet.UI
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia\";
             LambdaRunAll_Pensia l1 = new LambdaRunAll_Pensia();
-            l1.RunOneMonth(3, 2014, path, true);
-            l1.RunOneMonth(2, 2013, path, false);
+            l1.RunOneMonth(int.Parse(textBox6.Text), int.Parse(textBox5.Text), path, true);
+            l1.RunOneMonth(int.Parse(textBox6.Text), int.Parse(textBox5.Text), path, false);
 
         }
 
@@ -129,23 +129,23 @@ namespace AutomationZionet.UI
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\bituach\";
             LambdaRunAll_Bituach l1 = new LambdaRunAll_Bituach();
-            l1.RunOneMonth(3, 2014, path, true);
-            l1.RunOneMonth(2, 2013, path, false);
+            l1.RunOneMonth(int.Parse(textBox6.Text), int.Parse(textBox5.Text), path, true);
+            l1.RunOneMonth(int.Parse(textBox6.Text), int.Parse(textBox5.Text), path, false);
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll_Gemel l1 = new LambdaRunAll_Gemel();
-            l1.RunOneMonth(3, 2014, path, true);
-            l1.RunOneMonth(2, 2013, path, false);
+            l1.RunOneMonth(int.Parse(textBox6.Text), int.Parse(textBox5.Text), path, true);
+            l1.RunOneMonth(int.Parse(textBox6.Text), int.Parse(textBox5.Text), path, false);
         }
 
         private void button12_Click(object sender, EventArgs e)
         {   //download one year
             string path = @"C:\projects_excellence\Automation_New\dwonloadedFiles\gemel\";
             LambdaRunAll_Gemel l1 = new LambdaRunAll_Gemel();
-            l1.RunYears(path, true,2005,2006);
+            l1.RunYears(path, true, int.Parse(textBox5.Text), int.Parse(textBox5.Text)+1);
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -154,6 +154,11 @@ namespace AutomationZionet.UI
             LambdaRunAllGeneral l1 =new LambdaRunAllGeneral();
             l1.Run(path, true);
             l1.Run(path, false);
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
 
         }
     }
