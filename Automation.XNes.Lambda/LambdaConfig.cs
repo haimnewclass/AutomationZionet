@@ -37,6 +37,7 @@ namespace Automation.XNes.Lambda
             base.Params["pensia_Driver_Path"] = @"C:\projects_excellence\Automation_New\dwonloadedFiles\pensia";
 
             base.Params["IsRunningAll"] = "0";
+
         }
 
     }
